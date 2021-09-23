@@ -1,32 +1,76 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <v-app-bar
+      app
+      color="white"
+      class="px-5"
+      height="80px"
+    >
+      <img src="@/assets/logo-menu.jpg" alt="">
+
+       <v-spacer></v-spacer>
+
+         <v-btn
+            v-for="(link, i) in links"
+            :key="i"
+            :to="{
+              name: link,
+            }"
+            exact
+            color="#4F3701"
+            plain
+          >
+            {{ link }}
+          </v-btn>
+      
+      <v-btn icon class="ml-16">
+        <v-icon color="#4F3701">mdi-magnify</v-icon>
+      </v-btn>
+
+       <v-btn icon>
+        <v-icon color="#4F3701">mdi-cart-outline</v-icon>
+      </v-btn>
+      
+      <v-btn icon >
+        <v-icon color="#4F3701">mdi-account-outline</v-icon>
+      </v-btn>
+     
+    </v-app-bar>
+
+   <transition name="vista" mode="out-in">
+      <router-view></router-view>
+    </transition>
+   </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import { mapMutations, mapState } from "vuex";
 
-#nav {
-  padding: 30px;
-}
+export default {
+  name: 'App',
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+  data: () => ({
+  
+  }),
+  computed: {
+    ...mapState(["links"]),
+  },
+};
+</script>
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+<style scoped>
+.vista-enter-active, .vista-leave-active {
+    transition: opacity .3s;
+  }
+.vista-enter, .vista-leave-to{
+  opacity: 0;
+}
+img {
+  width: 12rem;
+}
+.v-btn {
+  text-transform: capitalize;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
 }
 </style>
