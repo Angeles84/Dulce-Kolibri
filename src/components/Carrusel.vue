@@ -1,5 +1,5 @@
 <template>
-  <v-carousel hide-delimiters class="mt-3 px-md-4">
+  <v-carousel hide-delimiters cycle class="mt-3 px-md-4 carrusel">
     <v-carousel-item
       src="@/assets/carrusel-1.jpg"
       class="img-fluid"
@@ -55,6 +55,9 @@
 </script>
 
 <style scoped>
+.carrusel {
+  transition: all 1s ease;
+}
 h2 {
   font-family: 'Yesteryear', cursive;
   font-size: 4.7rem;
