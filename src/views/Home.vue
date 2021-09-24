@@ -1,15 +1,17 @@
 <template>
-  <hello-world />
+  <div class="mt-16">
+    <Carrusel />
+  </div>
 </template>
 
 <script>
-  import HelloWorld from '../components/HelloWorld'
+  import Carrusel from '../components/Carrusel'
 
   export default {
     name: 'Home',
 
     components: {
-      HelloWorld,
+      Carrusel,
     },
   }
 </script>

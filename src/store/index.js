@@ -5,6 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    drawer: false,
     links: [
       'Home',
       'Nosotros',
@@ -13,6 +14,9 @@ export default new Vuex.Store({
     ],
   },
   mutations: {
+    SET_DRAWER (state, payload) {
+      state.drawer = payload
+    },
   },
   actions: {
   },
