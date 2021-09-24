@@ -1,7 +1,8 @@
 <template>
-  <v-carousel hide-delimiters class="mt-3 px-4">
+  <v-carousel hide-delimiters class="mt-3 px-md-4">
     <v-carousel-item
       src="@/assets/carrusel-1.jpg"
+      class="img-fluid"
     >
       <v-row
         class="fill-height"
@@ -16,6 +17,7 @@
 
     <v-carousel-item
       src="@/assets/carrusel-2.jpg"
+      class="img-fluid"
     >
       <v-row
         class="fill-height"
@@ -30,6 +32,7 @@
 
     <v-carousel-item
       src="@/assets/carrusel-3.jpg"
+      class="img-fluid"
     >
       <v-row
         class="fill-height"
