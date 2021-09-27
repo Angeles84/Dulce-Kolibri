@@ -7,7 +7,7 @@ export default new Vuex.Store({
   state: {
     drawer: false,
     links: [
-      'Home',
+      'Inicio',
       'Nosotros',
       'Productos',
       'Contacto',

@@ -1,13 +1,13 @@
 <template>
   <v-navigation-drawer v-model="drawer" right fixed temporary>
-    <v-list>
+    <v-list class="mt-3">
       <v-list-item
         v-for="(link, i) in links"
         :key="i"
         :to="{
           name: link,
         }"
-        min-width="128px"
+        min-width="118px"
         exact
         color="#4F3701"
         text
@@ -18,14 +18,14 @@
       </v-list-item>
     </v-list>
 
-    <template v-slot:append>
-      <div class="py-10">
+    <template >
+      <div class="pl-3">
         <v-btn icon>
-          <v-icon color="#4F3701">mdi-cart-outline</v-icon>
-        </v-btn>
+          <v-icon color="#4F3701" >mdi-cart-outline</v-icon>
+        </v-btn> <br>
       
         <v-btn icon >
-          <v-icon color="#4F3701">mdi-account-outline</v-icon>
+          <v-icon color="#4F3701" class="mt-4">mdi-account-outline</v-icon>
         </v-btn>
       </div>
     </template>
@@ -52,3 +52,11 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.v-list-item:hover {
+  text-decoration: none;
+  color: #4F3701;
+  opacity: 0.7;
+}
+</style>
