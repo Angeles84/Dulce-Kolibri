@@ -4,9 +4,9 @@
       app
       color="white"
       class="px-5"
-      height="80px"
+      height="82px"
     >
-      <img src="@/assets/logo-menu.jpg" alt="">
+      <img src="@/assets/logo-menu.png" alt="">
 
       <v-spacer></v-spacer>
       <v-toolbar-items v-if="$vuetify.breakpoint.mdAndUp" class="shrink">
@@ -109,7 +109,7 @@ export default {
   opacity: 0;
 }
 img {
-  width: 12rem;
+  width: 11rem;
 }
 .v-btn {
   text-transform: capitalize;

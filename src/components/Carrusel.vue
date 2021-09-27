@@ -1,5 +1,9 @@
 <template>
-  <v-carousel hide-delimiters cycle class="mt-3 px-md-4 carrusel">
+<div>
+  <div class="mt-4 banner">
+    <img src="@/assets/banner.jpg" alt="" class="img-fluid banner-img">
+  </div>
+  <v-carousel hide-delimiters cycle class="mt-4 carrusel">
     <v-carousel-item
       src="@/assets/carrusel-1.jpg"
       class="img-fluid"
@@ -8,10 +12,6 @@
         class="fill-height"
         align="center"
       >
-        <div class="pl-10 ml-5 pl-md-16 ml-md-16">
-          <h2 class="mb-3">Pastelería</h2>
-          <p >Delicias que cumplen<br>un sueño...</p>
-        </div>
       </v-row>
     </v-carousel-item>
 
@@ -23,10 +23,6 @@
         class="fill-height"
         align="center"
       >
-        <div class="pl-10 ml-5 pl-md-16 ml-md-16">
-          <h2 class="mb-3">Pastelería</h2>
-          <p >Delicias que cumplen<br>un sueño...</p>
-        </div>
       </v-row>
     </v-carousel-item>
 
@@ -38,13 +34,10 @@
         class="fill-height"
         align="center"
       >
-        <div class="pl-10 ml-5 pl-md-16 ml-md-16">
-          <h2 class="mb-3">Pastelería</h2>
-          <p >Delicias que cumplen<br>un sueño...</p>
-        </div>
       </v-row>
     </v-carousel-item>
   </v-carousel>
+  </div>
 </template>
 
 <script>
@@ -55,17 +48,23 @@
 </script>
 
 <style scoped>
+
+.banner-img {
+  width: 100%;
+}
+.carrusel {
+  display: none;
+}
+@media (min-width: 768px) {
+  .banner {
+    display: none;
+  }
+  .carrusel {
+    display: block;
+  }
+}
 .carrusel {
   transition: all 1s ease;
 }
-h2 {
-  font-family: 'Yesteryear', cursive;
-  font-size: 4.7rem;
-  color: #262626;
-}
-p {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
-  color: #262626;
-}
+
 </style>
