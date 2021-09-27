@@ -1,7 +1,7 @@
 <template>
   <div class="mt-10 mb-5">
     <v-container>
-      <h2 class="mt-4 mb-12 text-center">Nuestros productos</h2>
+      <h2 class="mt-5 mb-12 text-center">Nuestros productos</h2>
       <v-row class="px-2">
         <v-col cols="12" md="8" align="center" class="pr-lg-5">
           <div class="background-tortas mb-2">

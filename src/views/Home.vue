@@ -2,7 +2,8 @@
   <div class="mt-16">
     <Carrusel />
     <NuestrosProductos />
-     <Destacados />
+    <Destacados />
+    <Testimonios />
 
   </div>
 </template>
@@ -11,6 +12,7 @@
   import Carrusel from '../components/Carrusel'
   import NuestrosProductos from '../components/NuestrosProductos'
   import Destacados from '../components/Destacados'
+  import Testimonios from '../components/Testimonios'
 
   export default {
     name: 'Home',
@@ -19,6 +21,7 @@
       Carrusel,
       NuestrosProductos,
       Destacados,
+      Testimonios ,
     },
   }
 </script>

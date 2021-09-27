@@ -1,37 +1,37 @@
 <template>
   <v-container fluid class="background-color mt-15 pb-10 pb-md-14 px-2 px-md-9">
-    <h2 class="text-center mt-13 mb-8">Destacados del mes</h2>
+    <h2 class="text-center mt-14 mb-8">Destacados del mes</h2>
 
     <div class="div-cards-large">
     <v-row>
       <v-col cols="12" sm="6" lg="4"
         v-for="(item, i) in items"
-          :key="i"
+        :key="i"
       >
-      <v-card
-        class="mx-auto my-5"
-        max-width="344"
-       >
-      <div class="d-flex flex-no-wrap justify-space-between">
-         <v-avatar
-                size="155"
-                height="245px"
-                tile
-              >
-                <v-img :src="item.src"></v-img>
-              </v-avatar>
-        <div>
-          
-          <v-card-title
-            class="titulo-card"
-            v-text="item.title"
-          ></v-card-title>
+        <v-card
+          class="mx-auto my-5"
+          max-width="344"
+         >
+          <div class="d-flex flex-no-wrap justify-space-between">
+            <v-avatar
+              size="155"
+              height="245px"
+              tile
+            >
+              <v-img :src="item.src"></v-img>
+            </v-avatar>
 
-          <v-card-subtitle class="texto-card pb-3" v-text="item.artist"></v-card-subtitle>
+            <div>       
+            <v-card-title
+              class="titulo-card"
+              v-text="item.title"
+            ></v-card-title>
 
-          <v-card-text class="precio-card pb-2" v-text="item.precio">  </v-card-text>
+            <v-card-subtitle class="texto-card pb-3" v-text="item.artist"></v-card-subtitle>
 
-          <v-card-actions>
+            <v-card-text class="precio-card pb-2" v-text="item.precio">  </v-card-text>
+
+            <v-card-actions>
 
             <v-btn
               class="ml-2 px-4"
@@ -44,9 +44,9 @@
             </v-btn>
           </v-card-actions>
         </div>
-      </div>
-    </v-card> 
-    </v-col>
+        </div>
+        </v-card> 
+      </v-col>
     </v-row>
    </div>
     <!-- cards en carrusel -->
@@ -63,15 +63,15 @@
         max-width="344"
        >
       <div class="d-flex flex-no-wrap justify-space-between">
-         <v-avatar
-                size="155"
-                height="250px"
-                tile
-              >
-                <v-img :src="item.src"></v-img>
-              </v-avatar>
-        <div>
-          
+        <v-avatar
+          size="155"
+          height="250px"
+          tile
+        >
+          <v-img :src="item.src"></v-img>
+        </v-avatar>
+
+        <div>         
           <v-card-title
             class="titulo-card"
             v-text="item.title"
