@@ -4,6 +4,7 @@
     <NuestrosProductos />
     <Destacados />
     <Testimonios />
+    <Ubicacion />
 
   </div>
 </template>
@@ -13,6 +14,8 @@
   import NuestrosProductos from '../components/NuestrosProductos'
   import Destacados from '../components/Destacados'
   import Testimonios from '../components/Testimonios'
+  import Ubicacion from '../components/Ubicacion'
+
 
   export default {
     name: 'Home',
@@ -22,6 +25,7 @@
       NuestrosProductos,
       Destacados,
       Testimonios ,
+      Ubicacion
     },
   }
 </script>
