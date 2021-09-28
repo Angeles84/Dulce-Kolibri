@@ -6,9 +6,12 @@
         <div class="styleInfo pt-10">
           <h2 class="mb-12">Ubicación</h2>
 
-          <div class="mb-4 d-flex">
+          <div class="mb-7 d-flex">
             <v-icon large color="#4f3701">mdi-map-marker</v-icon>
-            <div class="mt-1"><span>Hipódromo de Chile #1390, Independencia.</span></div>
+            <div class="mt-1">
+              <span>Hipódromo de Chile #1390,</span><br>
+              <span>Independencia.</span>
+            </div>
           </div>
 
          <div class="mb-4">
