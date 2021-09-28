@@ -9,7 +9,7 @@
 
       <v-spacer></v-spacer>
       <v-toolbar-items v-if="$vuetify.breakpoint.mdAndUp" class="shrink">
-        <v-btn exact color="#4F3701" plain :to="{name: 'Home'}"
+        <v-btn exact color="#4F3701" plain :to="{name: 'Inicio'}"
         >
           Inicio
         </v-btn>

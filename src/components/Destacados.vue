@@ -123,7 +123,7 @@ export default {
         },
         {
           color: '#1F7087',
-          src: 'https://media.istockphoto.com/photos/fuba-cake-picture-id491517422?k=20&m=491517422&s=612x612&w=0&h=UFohOjklUcBthMxj65pHgyLDlODX0rszDAMqq6JswTY=',
+          src: 'https://media.istockphoto.com/photos/white-wooden-table-with-a-bundt-cake-kugelhupf-or-sockerkaka-and-a-picture-id1204993548?k=20&m=1204993548&s=612x612&w=0&h=EuuqGtbJLqqi-TDevLNk1eJ7R3C1ZspbPc-9WkybVwA=',
           title: 'Queque',
           artist: 'Esponjoso y delicioso queque de plátano, ideal para la hora del té.',
           precio: '$ 5.990'
