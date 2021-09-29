@@ -4,18 +4,24 @@
       <h2 class="mt-5 mb-12 text-center">Nuestros productos</h2>
       <v-row class="px-2">
         <v-col cols="12" md="8" align="center" class="pr-lg-5">
-          <div class="background-tortas mb-2">
-            <h3>Tortas</h3>
-          </div>
+          <router-link to="/tortas" style="text-decoration: none;">
+            <div class="background-tortas mb-2">
+              <h3>Tortas</h3>
+            </div>
+          </router-link>     
         </v-col>
 
         <v-col cols="12" md="4" class="pl-lg-11" >
-          <div class="background-galletas mb-7" >
-            <h4>Galletas</h4>
-          </div>
-          <div class="background-postres" >
-            <h4>Postres</h4>
-          </div>
+          <router-link to="/galletas" style="text-decoration: none;">
+            <div class="background-galletas mb-7">
+              <h4>Galletas</h4>
+            </div>
+          </router-link>  
+          <router-link to="/postres" style="text-decoration: none;">
+            <div class="background-postres">
+              <h4>Postres</h4>
+            </div>
+          </router-link>  
         </v-col>
       </v-row>
     </v-container>
@@ -116,6 +122,7 @@ h4 {
   h3 {
     font-size: 5.7rem;
     padding-top: 5rem;
+ }
 }
-}
+
 </style>

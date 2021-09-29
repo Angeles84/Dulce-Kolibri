@@ -9,7 +9,7 @@
 
       <v-spacer></v-spacer>
       <v-toolbar-items v-if="$vuetify.breakpoint.mdAndUp" class="shrink">
-        <v-btn exact color="#4F3701" plain :to="{name: 'Home'}"
+        <v-btn exact color="#4F3701" plain :to="{name: 'Inicio'}"
         >
           Inicio
         </v-btn>
@@ -22,7 +22,7 @@
        <v-menu offset-y open-on-hover>
       <template v-slot:activator="{ on, attrs }">
         <v-btn
-          exact color="#4F3701" plain :to="{name: 'Nosotros'}"
+          exact color="#4F3701" plain :to="{name: 'Productos'}"
           v-bind="attrs"
           v-on="on"
         >
@@ -39,9 +39,7 @@
         <v-list-item
           v-for="(item, index) in items"
           :key="index"
-          :to="{
-            name: item,
-          }"
+          :to="{ name: item.title }"
           
         >
           <v-list-item-title>{{ item.title }}</v-list-item-title>

@@ -16,7 +16,6 @@
   import Testimonios from '../components/Testimonios'
   import Ubicacion from '../components/Ubicacion'
 
-
   export default {
     name: 'Home',
 
@@ -24,7 +23,7 @@
       Carrusel,
       NuestrosProductos,
       Destacados,
-      Testimonios ,
+      Testimonios,
       Ubicacion
     },
   }
