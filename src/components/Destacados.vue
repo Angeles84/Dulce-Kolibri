@@ -89,6 +89,7 @@
               small
               dark
               color="#D9AF3A"
+              @click="agregarAlCarrito(i, item)"
             >
               Agregar
             </v-btn>
@@ -129,7 +130,14 @@ export default {
           precio: '$ 5.990'
         },
       ],
-  })
+  }),
+  methods: {
+    agregarAlCarrito(item, id){
+      console.log(item);
+      console.log(id);
+      this.$store.dispatch('agregarAlCarrito', [{ ...item }, id ])
+    }
+  }
 }
 </script>
 
