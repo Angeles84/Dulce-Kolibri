@@ -1,7 +1,7 @@
 <template>
   <div class="nosotros">
     <v-container>
-      <v-row class="px-4 px-md-0">
+      <v-row class="px-4 px-md-0 mb-14">
         <v-col cols="12" md="7" lg="7" class="pr-md-9">
           <h2 class="mb-5">Nuestra historia</h2>
           <p>Hace un tiempo la mujer más hermosa que la vida me pudo dar emprendió su vuelo y con ello todos mis sueños se fueron abajo... No puedo negar que han sido meses muy difíciles, ella sería mi compañera y con su ausencia solo pensé en dejar todo, pero el tiempo me ha enseñado que es el peor error que puedo cometer, porque no sólo era mi sueño, también era el de mi madre, quien siempre fue mi admiradora número uno.</p>
@@ -28,13 +28,23 @@
         </v-col>
       </v-row>
     </v-container>
+    <Footer />
   </div>
 </template>
+
+<script>
+import Footer from '../components/Footer'
+
+export default {
+  name: 'Nosotros',
+  components: { Footer },
+
+}
+</script>
 
 <style scoped>
 .nosotros {
   margin-top: 8rem;
-  margin-bottom: 3rem;
 }
 h2 {
   font-family: "Montserrat", sans-serif;

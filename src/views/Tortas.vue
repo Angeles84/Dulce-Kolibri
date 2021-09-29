@@ -3,7 +3,7 @@
     <h2 class="mb-1">Tortas</h2>
     <img class="ramita-tortas" src="@/assets/ramita-tortas.png" alt="">
 
-    <v-container>
+    <v-container class="mb-14">
       <v-row>
         <v-col cols="12" md="6" lg="4">
 
@@ -16,17 +16,18 @@
         </v-col>
       </v-row>
     </v-container>
+    <Footer />
   </div>
 </template>
 
 <script>
+import Footer from '../components/Footer'
 
 export default {
-  data: () => ({
-    
-  })
-}
+  name: 'Tortas',
+  components: { Footer },
 
+}
 </script>
 
 <style scoped>

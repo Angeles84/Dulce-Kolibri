@@ -5,6 +5,7 @@
     <Destacados />
     <Testimonios />
     <Ubicacion />
+    <Footer />
 
   </div>
 </template>
@@ -15,6 +16,7 @@
   import Destacados from '../components/Destacados'
   import Testimonios from '../components/Testimonios'
   import Ubicacion from '../components/Ubicacion'
+  import Footer from '../components/Footer'
 
   export default {
     name: 'Home',
@@ -24,7 +26,8 @@
       NuestrosProductos,
       Destacados,
       Testimonios,
-      Ubicacion
+      Ubicacion,
+      Footer
     },
   }
 </script>
