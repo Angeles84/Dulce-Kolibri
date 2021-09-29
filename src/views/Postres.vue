@@ -4,7 +4,7 @@
     <img class="ramita-tortas" src="@/assets/ramita-tortas.png" alt="">
 
     <v-container>
-      <v-row>
+      <v-row class="mb-14">
         <v-col cols="12" md="6" lg="4">
 
         </v-col>
@@ -16,17 +16,18 @@
         </v-col>
       </v-row>
     </v-container>
+    <Footer />
   </div>
 </template>
 
 <script>
+import Footer from '../components/Footer'
 
 export default {
-  data: () => ({
-    
-  })
-}
+  name: 'Galletas',
+  components: { Footer },
 
+}
 </script>
 
 <style scoped>

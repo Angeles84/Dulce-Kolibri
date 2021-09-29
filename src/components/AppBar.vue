@@ -56,11 +56,11 @@
           <v-icon color="#4F3701">mdi-magnify</v-icon>
         </v-btn>
 
-        <v-btn icon>
-          <v-icon color="#4F3701">mdi-cart-outline</v-icon>
+        <v-btn icon :to="{name: 'Carrito'}">
+          <v-icon color="#4F3701" >mdi-cart-outline</v-icon>
         </v-btn>
       
-        <v-btn icon >
+        <v-btn icon :to="{name: 'Login'}">
           <v-icon color="#4F3701">mdi-account-outline</v-icon>
         </v-btn>
       </v-toolbar-items>
@@ -78,8 +78,8 @@ export default {
   data: () => ({
       items: [
         { title: 'Tortas' },
-        { title: 'Postres' },
         { title: 'Galletas' },
+        { title: 'Postres' },
       ],
     }),
   computed: {

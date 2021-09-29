@@ -9,22 +9,22 @@
         }"
         min-width="118px"
         exact
-        color="#4F3701"
         text
       >
         <v-list-item-content>
           <v-list-item-title v-text="link" />
-        </v-list-item-content>
+        </v-list-item-content>   
       </v-list-item>
+      
     </v-list>
 
     <template >
       <div class="pl-3">
-        <v-btn icon>
+        <v-btn icon :to="{name: 'Carrito'}">
           <v-icon color="#4F3701" >mdi-cart-outline</v-icon>
         </v-btn> <br>
       
-        <v-btn icon >
+        <v-btn icon :to="{name: 'Login'}">
           <v-icon color="#4F3701" class="mt-4">mdi-account-outline</v-icon>
         </v-btn>
       </div>
@@ -34,13 +34,21 @@
 
 <script>
 // Utilities
-import { mapState } from "vuex";
+
 
 export default {
   name: "Drawer",
-
+  data: () => ({
+    links: [
+      'Inicio',
+      'Nosotros',
+      'Tortas',
+      'Galletas',
+      'Postres',
+      'Contacto',
+    ],
+  }),
   computed: {
-    ...mapState(["links"]),
     drawer: {
       get() {
         return this.$store.state.drawer;
@@ -58,5 +66,9 @@ export default {
   text-decoration: none;
   color: #4F3701;
   opacity: 0.7;
+}
+.v-list-item {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
 }
 </style>

@@ -45,6 +45,11 @@ const routes = [
     name: 'Carrito',
     component: () => import('../views/Carrito.vue')
   },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('../views/Login.vue')
+  },
 ]
 
 const router = new VueRouter({
