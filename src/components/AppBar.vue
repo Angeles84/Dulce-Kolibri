@@ -106,6 +106,10 @@ img {
 .v-btn:hover {
   text-decoration: none;
 }
+.v-list-item {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+}
 .v-list-item:hover {
   text-decoration: none;
   color: #4F3701;
