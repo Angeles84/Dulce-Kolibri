@@ -79,8 +79,4 @@ span {
   font-weight: 500;
 }
 
-<<<<<<< HEAD
 </style>
-=======
-</style>
->>>>>>> 63a16ce835ab5ab8dcf878e64bd84a5dd100bafc

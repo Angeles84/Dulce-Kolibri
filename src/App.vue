@@ -6,7 +6,6 @@
     <transition name="vista" mode="out-in">
       <router-view></router-view>
     </transition>
-    <Footer />
   </v-app>
 </template>
 
