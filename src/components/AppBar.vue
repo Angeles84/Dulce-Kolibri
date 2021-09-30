@@ -20,7 +20,7 @@
         </v-btn>
 
        <v-menu offset-y open-on-hover>
-      <template v-slot:activator="{ on, attrs }">
+        <template v-slot:activator="{ on, attrs }">
         <v-btn
           exact color="#4F3701" plain :to="{name: 'Productos'}"
           v-bind="attrs"
@@ -31,7 +31,7 @@
             right
             dark
           >
-            mdi-menu-down
+            mdi-chevron-down
       </v-icon>
         </v-btn>
       </template>

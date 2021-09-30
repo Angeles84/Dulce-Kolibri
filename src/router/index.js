@@ -50,6 +50,16 @@ const routes = [
     name: 'Login',
     component: () => import('../views/Login.vue')
   },
+  {
+    path: '/actualizar',
+    name: 'ActualizarDatos',
+    component: () => import('../views/ActualizarDatos.vue')
+  },
+  {
+    path: '/detalle',
+    name: 'DetalleProducto',
+    component: () => import('../views/DetalleProducto.vue')
+  },
 ]
 
 const router = new VueRouter({

@@ -4,40 +4,41 @@
       <v-row class="p-0 m-0">
         <v-col cols="12" md="6" class="columna-1 pr-md-10 pb-0">
           <h2 class="mb-10">Login</h2>
+
           <v-form
             ref="form"
             @submit.prevent=""
           >
-      <v-text-field
-   
-      label="Correo"
-      :rules="[v => !!v || 'Este campo es obligatorio']"
-      background-color="#ebe9e9"
-      color="#262626"
-      rounded
-    ></v-text-field>
+            <v-text-field
+              
+              label="Correo"
+              :rules="[v => !!v || 'Este campo es obligatorio']"
+              background-color="#ebe9e9"
+              color="#262626"
+              rounded
+            ></v-text-field>
 
-    <v-text-field
+            <v-text-field
 
-      label="Contraseña"
-      :counter="10"
-      :rules="[v => !!v || 'Este campo es obligatorio']"
-      background-color="#ebe9e9"
-      color="#262626"
-      rounded
-    ></v-text-field>
+              label="Contraseña"
+              :counter="10"
+              :rules="[v => !!v || 'Este campo es obligatorio']"
+              background-color="#ebe9e9"
+              color="#262626"
+              rounded
+            ></v-text-field>
     
-      <v-btn
-      color="#D9AF3A"
-      class="mr-4 mb-3"
-      type="submit"
-      block
-      rounded
-      dark
-    >
-      INGRESAR
-    </v-btn>
-    </v-form>
+            <v-btn
+              color="#D9AF3A"
+              class="mr-4 mb-3"
+              type="submit"
+              block
+              rounded
+              dark
+            >
+              INGRESAR
+            </v-btn>
+          </v-form>
 
           <router-link to="" style="text-decoration: none;">
             <p class="text-center mt-6 olvida-contraseña">¿Olvidaste la contraseña?</p>  
@@ -48,7 +49,6 @@
           <v-btn
             color="#D9AF3A"
             class="mr-4 mb-3 btn-registro"
-            to="/registro"
             block
             rounded
             outlined
