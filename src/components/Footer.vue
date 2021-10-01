@@ -12,7 +12,7 @@
             </ul>
             <ul class="list-none">
                 <li class="text-bold">Sígueme en</li>
-                <li><v-icon color="#4F3701">mdi-instagram</v-icon><span> @dulcekolibri</span></li>
+                <li class="instagram"><a href="https://www.instagram.com/dulce_kolibri/?hl=es" target="_blank"><v-icon color="#4F3701">mdi-instagram</v-icon><span> @dulcekolibri</span></a></li>
             </ul>
             <ul class="list-none">
                 <li class="text-bold">Contacto</li>
@@ -117,7 +117,20 @@ li {
     }
     .text-footer-mob {
         color: #4F3701;
-    }
-    
+    }  
 }
+span{
+    color: #262626;
+}
+.instagram {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.instagram:hover {
+    opacity: 0.5;
+}
+a:hover {
+    text-decoration: none;
+}
+
 </style>
