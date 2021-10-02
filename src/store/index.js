@@ -12,6 +12,18 @@ export default new Vuex.Store({
       'Productos',
       'Contacto',
     ],
+    tortas: [],
+    postres: [],
+    galletas: [],
+    sugerencias: [],
+    producto: {
+      nombre: '',
+      imagen: '',
+      personas: '',
+      descripcion: '',
+      precio: 0,
+     
+    },
   },
   mutations: {
     SET_DRAWER (state, payload) {

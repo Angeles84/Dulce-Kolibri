@@ -29,7 +29,7 @@
 
             <v-card-subtitle class="texto-card pb-3" v-text="item.artist"></v-card-subtitle>
 
-            <v-card-text class="precio-card pb-2" v-text="item.precio">  </v-card-text>
+            <v-card-text class="precio-card pb-2" v-text="item.precio"></v-card-text>
 
             <v-card-actions>
 

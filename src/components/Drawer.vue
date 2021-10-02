@@ -22,10 +22,10 @@
       <div class="pl-3">
         <v-btn icon :to="{name: 'Carrito'}">
           <v-icon color="#4F3701" >mdi-cart-outline</v-icon>
-        </v-btn> <br>
+        </v-btn><br>
       
-        <v-btn icon :to="{name: 'Login'}">
-          <v-icon color="#4F3701" class="mt-4">mdi-account-outline</v-icon>
+        <v-btn icon :to="{name: 'Login'}" class="mt-4">
+          <v-icon color="#4F3701">mdi-account-outline</v-icon>
         </v-btn>
       </div>
     </template>

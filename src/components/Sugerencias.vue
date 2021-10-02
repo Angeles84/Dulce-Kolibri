@@ -1,7 +1,17 @@
 <template>
-    <v-container>
-      <!--Acá van las 3 columnas con las sugerencias-->
-    </v-container>
+  <v-container>
+    <v-row>
+      <v-col cols="12" md="6" lg="4" class="text-center"
+        v-for="(sugerencia, i) in $store.state.sugerencias"
+        :key="i"
+      >
+        <img src="" alt="" class="img-fluid img-producto">
+        <h3></h3>
+        <p></p>
+        <h4></h4>
+      </v-col> 
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -12,5 +22,30 @@ export default {
 </script>
 
 <style scoped>
-
+.img-producto {
+  box-shadow: 6px 8px 14px rgba(0, 0, 0, 0.30);
+  transition: all 0.4s ease;
+  width: 90%;
+}
+.img-producto:hover {
+  box-shadow: 6px 8px 20px rgba(0, 0, 0, 0.80);
+  opacity: 0.75;
+  cursor: pointer;
+}
+h3 {
+  font-family: 'Yesteryear', cursive;
+  color: #4f3701;
+  font-size: 1.8rem;
+}
+p {
+  font-family: "Montserrat", sans-serif;
+  color: #262626;
+  font-size: 0.9rem;
+}
+h4 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #262626;
+}
 </style>
