@@ -109,17 +109,18 @@
         </v-col>
       </v-row>
     </v-container>
-
     <Sugerencias />
+    <Footer />
   </div>
 </template>
 
 <script>
 import Sugerencias from '../components/Sugerencias'
+import Footer from '../components/Footer'
 
 export default {
   name: 'DetalleProducto',
-  components: { Sugerencias },
+  components: { Footer, Sugerencias },
   
   data: () => ({
      items: [

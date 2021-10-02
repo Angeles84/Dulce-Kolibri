@@ -16,18 +16,16 @@
         </v-col> 
       </v-row>
     </v-container>
-    <Sugerencias />
     <Footer />
   </div>
 </template>
 
 <script>
 import Footer from '../components/Footer'
-import Sugerencias from '../components/Sugerencias'
 
 export default {
   name: 'Tortas',
-  components: { Footer, Sugerencias },
+  components: { Footer },
   data: () => ({
     
   }),

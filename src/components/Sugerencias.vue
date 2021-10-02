@@ -1,5 +1,7 @@
 <template>
-  <v-container>
+  <v-container class="text-center mb-16">
+    <h2 class="mt-3">Sugerencias</h2>
+    <img class="ramita-tortas" src="@/assets/ramita-tortas.png" alt="">
     <v-row>
       <v-col cols="12" md="6" lg="4" class="text-center"
         v-for="(sugerencia, i) in $store.state.sugerencias"
@@ -22,6 +24,15 @@ export default {
 </script>
 
 <style scoped>
+h2 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #4f3701;
+}
+.ramita-tortas {
+  width: 10em;
+}
 .img-producto {
   box-shadow: 6px 8px 14px rgba(0, 0, 0, 0.30);
   transition: all 0.4s ease;
