@@ -6,7 +6,12 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     drawer: false,
-    producto: [],
+    productos: [],
+    numeroOrden : '',
+    formLabelAlign: {
+      email: "",
+      password: "",
+    },
     links: [
       'Inicio',
       'Nosotros',
@@ -14,22 +19,36 @@ export default new Vuex.Store({
       'Contacto',
     ],
   },
+  getters:{
+    valorTotalVenta(state){
+      return state.productos.reduce((accumulator, producto) => {
+        return accumulator + producto.precio
+      },0) 
+    },
+  },
   mutations: {
     SET_DRAWER (state, payload) {
       state.drawer = payload
     },
     ADD_PRODUCTO_AL_CARRITO(state, nuevoProductoAgregado){
-      state.producto.push(nuevoProductoAgregado)
-      console.log(this.producto);
+      console.log('ProductoAgregado', nuevoProductoAgregado);
+      state.productos.push(nuevoProductoAgregado)
     }
   },
   actions: {
-    agregarAlCarrito(context, id){
-      console.log('COntext', context);
-      console.log('id', id);
-      context.commit('ADD_PRODUCTO_AL_CARRITO', id)
+    agregarAlCarrito({ state, commit }, { index}){
 
-    }
+      // const productoEncarritoDecompras = state.productos.findIndex(
+      //   (productoCarrito) =>{
+      //   return productoCarrito.index === productos.index
+      //   }
+      // )
+      commit("ADD_PRODUCTO_AL_CARRITO", index);
+      console.log('productoPasadooo', [{index}]);
+      alert(`${ index.title} - Producto agregado con exito!`);
+      console.log('este es', [state.productos]);
+      
+    },
   },
   modules: {
   }
