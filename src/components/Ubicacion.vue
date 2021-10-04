@@ -21,7 +21,7 @@
 
           <div class="mb-2">
             <v-icon large color="#4f3701">mdi-email-outline</v-icon>
-            <span>dulcekolibri@gmail.com</span>
+            <span>dulce.kolibri2020@gmail.com</span>
           </div>
           
         </div>
