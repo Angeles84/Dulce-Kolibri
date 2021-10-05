@@ -1,10 +1,9 @@
 <template>
-  <div>
+  <div v-if="producto">
     <v-container class="pt-16 px-4">
       <v-row class="pt-16">
         <v-col cols="12" 
-          v-for="(item, i) in items"
-          :key="i">
+        >
            <!--Card pantalla grande-->
           <v-card
           class="mx-auto my-5 card-grande"
@@ -16,16 +15,16 @@
               height="380px"
               tile
             >
-              <v-img :src="item.src"></v-img>
+              <v-img :src="producto.imagen"></v-img>
             </v-avatar>
 
             <div class="pl-5">       
             <v-card-title
               class="titulo-card pt-7 pb-5"
-              v-text="item.title"
+              v-text="producto.nombre"
             ></v-card-title>
 
-            <v-card-subtitle class="texto-card pb-3 pb-lg-6" v-text="item.artist"></v-card-subtitle>
+            <v-card-subtitle class="texto-card pb-3 pb-lg-6" v-text="producto.descripcion"></v-card-subtitle>
           <div class="d-flex pl-4">
             <v-checkbox 
              
@@ -64,15 +63,15 @@
           <v-card
             class="mx-auto card-chica"
           >
-            <v-img :src="item.src"></v-img>
+            <v-img :src="producto.imagen"></v-img>
 
           <div class="px-3">       
             <v-card-title
               class="titulo-card pt-7 pb-5"
-              v-text="item.title"
+              v-text="producto.nombre"
             ></v-card-title>
 
-            <v-card-subtitle class="texto-card pb-3" v-text="item.artist"></v-card-subtitle>
+            <v-card-subtitle class="texto-card pb-3" v-text="producto.descripcion"></v-card-subtitle>
           <div class="d-flex pl-4">
             <v-checkbox 
              
@@ -117,22 +116,27 @@
 <script>
 import Sugerencias from '../components/Sugerencias'
 import Footer from '../components/Footer'
+import Store from '@/store'
+import Firebase from 'firebase'
 
 export default {
   name: 'DetalleProducto',
   components: { Footer, Sugerencias },
   
   data: () => ({
-     items: [
-        {
-          color: '#1F7087',
-          src: 'https://media.istockphoto.com/photos/chocolate-cake-with-bonbon-picture-id970877400?k=20&m=970877400&s=612x612&w=0&h=VyqDh9l-CohWJYZwf4TUoeMpHu6IyElNn9ZhFGL13kM=',
-          title: 'Torta de trufa',
-          artist: 'Exquisita torta de trufa, chocolate y manjar, hecha con biscocho y mousse de chocolate. Además, contiene azúcar, harina, huevos, crema y leche. No contiene frutos secos. Si te encanta el chocolate esta torta es para ti, para esos días inolvidables de amor y calidez.',
-          precio: '$ 21.990'
-        },
-      ],
-  })
+    producto: null
+  }),
+  async beforeRouteEnter(to, from, next) {
+    Firebase.firestore().collection(to.params.category).doc(to.params.id).get().then(document => {
+      next(vm => {
+        vm.producto = {id:document.id, ...document.data()}
+      })
+    })
+  },
+  mounted() {
+    console.log(this.$route.params)
+  }
+  
 }
 </script>
 

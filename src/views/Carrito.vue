@@ -29,11 +29,10 @@
       >
         <v-col cols="12" md="4" class="pl-10 d-flex">
           <div class="div-imagen pr-6">
-            <img :src="producto.src" alt="" class="img-producto img-fluid" />
+            <img :src="producto.imagen" alt="" class="img-producto img-fluid" />
           </div>
           <div class="pt-md-2 pt-lg-4">
-            <h4 v-text="producto.title"></h4>
-            <p>Para 30 personas</p>
+            <h4 v-text="producto.nombre"></h4>
           </div>
         </v-col>
         <v-col cols="12" md="2">
@@ -77,10 +76,10 @@
       <hr />
       <div class="d-flex justify-space-between">
         <div>
-          <img :src="producto.src" alt="" class="img-producto img-fluid" />
+          <img :src="producto.imagen" alt="" class="img-producto img-fluid" />
         </div>
         <div class="text-left pt-4 pr-6">
-          <h4 v-text="producto.title"></h4>
+          <h4 v-text="producto.nombre"></h4>
           <p>Para 30 personas</p>
         </div>
         <div>

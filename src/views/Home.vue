@@ -19,6 +19,7 @@
   import Testimonios from '../components/Testimonios'
   import Ubicacion from '../components/Ubicacion'
   import Footer from '../components/Footer'
+  import Store from '@/store'
 
   export default {
     name: 'Home',
@@ -31,6 +32,11 @@
       Testimonios,
       Ubicacion,
       Footer
+    },
+
+    async beforeRouteEnter(to, from, next) {
+      await Store.dispatch('getDestacados')
+      next()
     },
   }
 </script>

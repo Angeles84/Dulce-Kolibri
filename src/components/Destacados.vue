@@ -5,7 +5,7 @@
     <div class="div-cards-large">
     <v-row>
       <v-col cols="12" sm="6" lg="4"
-        v-for="(item, index) in items"
+        v-for="(item, index) in $store.state.destacados"
         :key="index"
       >
         <v-card
@@ -18,16 +18,16 @@
               height="245px"
               tile
             >
-              <v-img :src="item.src"></v-img>
+              <v-img :src="item.imagen"></v-img>
             </v-avatar>
 
             <div>       
             <v-card-title
               class="titulo-card"
-              v-text="item.title"
+              v-text="item.nombre"
             ></v-card-title>
 
-            <v-card-subtitle class="texto-card pb-3" v-text="item.artist"></v-card-subtitle>
+            <v-card-subtitle class="texto-card pb-3" v-text="item.descripcion"></v-card-subtitle>
 
             <v-card-text class="precio-card pb-2" v-text="item.precio"></v-card-text>
 
@@ -56,7 +56,7 @@
       <v-carousel hide-delimiters cycle class="mt-4 carrusel" height="300px">
     <v-carousel-item
       cols="12" sm="6" lg="4"
-        v-for="(item, index) in items"
+        v-for="(item, index) in $store.state.destacados"
           :key="index"
     >
       <v-card
@@ -69,18 +69,18 @@
           height="250px"
           tile
         >
-          <v-img :src="item.src"></v-img>
+          <v-img :src="item.imagen"></v-img>
         </v-avatar>
 
         <div>         
           <v-card-title
             class="titulo-card"
-            v-text="item.title"
+            v-text="item.nombre"
           ></v-card-title>
 
-          <v-card-subtitle class="texto-card pb-3" v-text="item.artist"></v-card-subtitle>
+          <v-card-subtitle class="texto-card pb-3" v-text="item.descripcion"></v-card-subtitle>
 
-          <v-card-text class="precio-card pb-2" v-text="`${item.precio}`">  </v-card-text>
+          <v-card-text class="precio-card pb-2" v-text="`$ ${item.precio}`">  </v-card-text>
 
           <v-card-actions>
 

@@ -4,13 +4,13 @@
     <img class="ramita-tortas" src="@/assets/ramita-tortas.png" alt="">
     <v-row>
       <v-col cols="12" md="6" lg="4" class="text-center"
-        v-for="(sugerencia, i) in $store.state.sugerencias"
+        v-for="(torta, i) in $store.state.sugerencias"
         :key="i"
       >
-        <img src="" alt="" class="img-fluid img-producto">
-        <h3></h3>
-        <p></p>
-        <h4></h4>
+        <img :src="torta.imagen" alt="" class="img-fluid img-producto">
+        <h3 class="mt-4 mb-0">{{torta.nombre}}</h3>
+        <p class="mb-2">{{torta.personas}}</p>
+        <h4 class="mb-5">{{torta.precio}}</h4>
       </v-col> 
     </v-row>
   </v-container>
@@ -19,12 +19,24 @@
 <script>
 
 export default {
+  name: 'Sugerencias',
+  components: {  },
+  data: () => ({
+    
+  }),
   
+  computed: {
+    
+  }, 
+  methods: {
+   
+  }
 }
 </script>
 
 <style scoped>
 h2 {
+  margin-top: 4em;
   font-family: "Montserrat", sans-serif;
   font-size: 2rem;
   font-weight: bold;
@@ -36,7 +48,7 @@ h2 {
 .img-producto {
   box-shadow: 6px 8px 14px rgba(0, 0, 0, 0.30);
   transition: all 0.4s ease;
-  width: 90%;
+  width: 85%;
 }
 .img-producto:hover {
   box-shadow: 6px 8px 20px rgba(0, 0, 0, 0.80);
@@ -46,7 +58,7 @@ h2 {
 h3 {
   font-family: 'Yesteryear', cursive;
   color: #4f3701;
-  font-size: 1.8rem;
+  font-size: 1.9rem;
 }
 p {
   font-family: "Montserrat", sans-serif;
@@ -55,8 +67,18 @@ p {
 }
 h4 {
   font-family: "Montserrat", sans-serif;
-  font-size: 1.2rem;
+  font-size: .9rem;
   font-weight: 600;
   color: #262626;
+}
+@media (min-width: 960px) {
+  .img-producto {
+    height: 250px;
+  }
+}
+@media (min-width: 1200px) {
+  .img-producto {
+    height: 230px;
+  }
 }
 </style>
