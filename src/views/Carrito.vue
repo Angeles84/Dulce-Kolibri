@@ -207,7 +207,7 @@ export default {
         artist:
           "Esponjoso y delicioso queque de plátano, ideal para la hora del té.",
         precio: 5990,
-      },
+      }, 
     },
   }),
   methods: {
