@@ -1,8 +1,8 @@
 <template>
   <v-container class="text-center mb-16">
-    <h2 class="mt-3">Sugerencias</h2>
+    <h2 class="mt-4">Sugerencias</h2>
     <img class="ramita-tortas" src="@/assets/ramita-tortas.png" alt="">
-    <v-row>
+    <v-row class="mt-5">
       <v-col cols="12" md="6" lg="4" class="text-center"
         v-for="(sugerencia, i) in $store.state.sugerencias"
         :key="i"

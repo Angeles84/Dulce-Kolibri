@@ -132,6 +132,7 @@ export default {
         vm.producto = {id:document.id, ...document.data()}
       })
     })
+    await Store.dispatch('getSugerencias' )
   },
   mounted() {
     console.log(this.$route.params)
