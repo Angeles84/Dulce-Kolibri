@@ -47,7 +47,6 @@
           <v-btn
             color="#D9AF3A"
             class="mr-4 mb-3 btn-registro"
-            to="/registro"
             block
             rounded
             outlined

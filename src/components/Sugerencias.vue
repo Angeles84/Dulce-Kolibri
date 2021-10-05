@@ -1,47 +1,36 @@
 <template>
-  <div class="text-center">
-    <h2 class="mb-1">Tortas</h2>
+  <v-container class="text-center mb-16">
+    <h2 class="mt-4">Sugerencias</h2>
     <img class="ramita-tortas" src="@/assets/ramita-tortas.png" alt="">
-
-    <v-container class="mt-5 mb-16">
-      <v-row>
-        <v-col cols="12" md="6" lg="4" class="text-center"
-          v-for="(torta, i) in $store.state.tortas"
-          :key="i"
-        >
-          <img :src="torta.imagen" alt="" class="img-fluid img-producto" @click="irAlDetalle(i, torta)">
-          <h3 class="mt-4 mb-0">{{torta.nombre}}</h3>
-          <p class="mb-2">{{torta.personas}}</p>
-          <h4 class="mb-5">$ {{torta.precio}}</h4>
-        </v-col> 
-      </v-row>
-    </v-container>
-    <Footer />
-  </div>
+    <v-row class="mt-5">
+      <v-col cols="12" md="6" lg="4" class="text-center"
+        v-for="(sugerencia, i) in $store.state.sugerencias"
+        :key="i"
+      >
+        <img :src="sugerencia.imagen" alt="" class="img-fluid img-producto" @click="irAlDetalle(i, sugerencia)">
+        <h3 class="mt-4 mb-0">{{sugerencia.nombre}}</h3>
+        <p class="mb-2">{{sugerencia.personas}}</p>
+        <h4 class="mb-5">$ {{sugerencia.precio}}</h4>
+      </v-col> 
+    </v-row>
+  </v-container>
 </template>
 
 <script>
-import Footer from '../components/Footer'
-import Store from '@/store'
 
 export default {
-  name: 'Tortas',
-  components: { Footer },
+  name: 'Sugerencias',
+  components: {  },
   data: () => ({
     
   }),
-
-  async beforeRouteEnter(to, from, next) {
-    await Store.dispatch('getTortas')
-    next()
-  },
   
   computed: {
     
   }, 
   methods: {
-    irAlDetalle( i, torta){
-      this.$router.push(`/detalle/tortas/${torta.id}`)
+    irAlDetalle( i, sugerencia){
+      this.$router.push(`/detalle/sugerencias/${sugerencia.id}`)
       console.log('// Item ///', i);
     }
   }

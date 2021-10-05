@@ -22,10 +22,10 @@
       <div class="pl-3">
         <v-btn icon :to="{name: 'Carrito'}">
           <v-icon color="#4F3701" >mdi-cart-outline</v-icon>
-        </v-btn> <br>
+        </v-btn><span class="pb-4"> {{$store.state.productos.length}}</span><br>
       
-        <v-btn icon :to="{name: 'Login'}">
-          <v-icon color="#4F3701" class="mt-4">mdi-account-outline</v-icon>
+        <v-btn icon :to="{name: 'Login'}" class="mt-4">
+          <v-icon color="#4F3701">mdi-account-outline</v-icon>
         </v-btn>
       </div>
     </template>
@@ -70,5 +70,11 @@ export default {
 .v-list-item {
   font-family: "Montserrat", sans-serif;
   font-weight: 500;
+}
+span {
+  font-family: 'Montserrat', sans-serif;
+  color: #4f3701;
+  font-size: 1rem;
+  font-weight: 600;
 }
 </style>

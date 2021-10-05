@@ -51,6 +51,16 @@ const routes = [
     name: 'Login',
     component: () => import('../views/Login.vue')
   },
+  {
+    path: '/actualizar',
+    name: 'ActualizarDatos',
+    component: () => import('../views/ActualizarDatos.vue')
+  },
+  {
+    path: '/detalle/:category/:id',
+    name: 'DetalleProducto',
+    component: () => import('../views/DetalleProducto.vue')
+  },
 ]
 
 const router = new VueRouter({
@@ -58,6 +68,16 @@ const router = new VueRouter({
   mode: 'history'
 })
 
-
+router.beforeEach((to, from, next) => {
+  let user = Firebase.auth().currentUser;
+  let authRequired = to.matched.some(route => route.meta.login);
+  if (!user && authRequired) {
+    next('login');
+  } else if (user && !authRequired) {
+    next('home');
+  }else {
+    next();
+  }
+});
 
 export default router

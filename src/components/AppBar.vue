@@ -20,7 +20,7 @@
         </v-btn>
 
        <v-menu offset-y open-on-hover>
-      <template v-slot:activator="{ on, attrs }">
+        <template v-slot:activator="{ on, attrs }">
         <v-btn
           exact color="#4F3701" plain :to="{name: 'Productos'}"
           v-bind="attrs"
@@ -31,7 +31,7 @@
             right
             dark
           >
-            mdi-menu-down
+            mdi-chevron-down
       </v-icon>
         </v-btn>
       </template>
@@ -58,8 +58,10 @@
 
         <v-btn icon :to="{name: 'Carrito'}">
           <v-icon color="#4F3701" >mdi-cart-outline</v-icon>
+          <span class="pb-4">{{$store.state.productos.length}}</span>
         </v-btn>
-      
+       
+
         <v-btn icon :to="{name: 'Login'}">
           <v-icon color="#4F3701">mdi-account-outline</v-icon>
         </v-btn>
@@ -106,9 +108,18 @@ img {
 .v-btn:hover {
   text-decoration: none;
 }
+.v-list-item {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+}
 .v-list-item:hover {
   text-decoration: none;
   color: #4F3701;
   opacity: 0.7;
+}
+span {
+  font-family: 'Montserrat', sans-serif;
+  color: #4f3701;
+  font-size: .9rem;
 }
 </style>
