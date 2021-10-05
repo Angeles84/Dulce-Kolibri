@@ -4,13 +4,13 @@
     <img class="ramita-tortas" src="@/assets/ramita-tortas.png" alt="">
     <v-row>
       <v-col cols="12" md="6" lg="4" class="text-center"
-        v-for="(torta, i) in $store.state.sugerencias"
+        v-for="(sugerencia, i) in $store.state.sugerencias"
         :key="i"
       >
-        <img :src="torta.imagen" alt="" class="img-fluid img-producto">
-        <h3 class="mt-4 mb-0">{{torta.nombre}}</h3>
-        <p class="mb-2">{{torta.personas}}</p>
-        <h4 class="mb-5">{{torta.precio}}</h4>
+        <img :src="sugerencia.imagen" alt="" class="img-fluid img-producto" @click="irAlDetalle(i, sugerencia)">
+        <h3 class="mt-4 mb-0">{{sugerencia.nombre}}</h3>
+        <p class="mb-2">{{sugerencia.personas}}</p>
+        <h4 class="mb-5">{{sugerencia.precio}}</h4>
       </v-col> 
     </v-row>
   </v-container>
@@ -29,7 +29,10 @@ export default {
     
   }, 
   methods: {
-   
+    irAlDetalle( i, sugerencia){
+      this.$router.push(`/detalle/sugerencias/${sugerencia.id}`)
+      console.log('// Item ///', i);
+    }
   }
 }
 </script>
