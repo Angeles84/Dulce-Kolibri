@@ -12,7 +12,7 @@
           <img :src="galleta.imagen" alt="" class="img-fluid img-producto" @click="irAlDetalle(i, galleta)">
           <h3 class="mt-4 mb-0">{{galleta.nombre}}</h3>
           <p class="mb-2">{{galleta.personas}}</p>
-          <h4 class="mb-5">{{galleta.precio}}</h4>
+          <h4 class="mb-5">$ {{galleta.precio}}</h4>
         </v-col> 
       </v-row>
     </v-container>
@@ -84,7 +84,7 @@ p {
 }
 h4 {
   font-family: "Montserrat", sans-serif;
-  font-size: .9rem;
+  font-size: 1rem;
   font-weight: 600;
   color: #262626;
 }

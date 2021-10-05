@@ -58,8 +58,10 @@
 
         <v-btn icon :to="{name: 'Carrito'}">
           <v-icon color="#4F3701" >mdi-cart-outline</v-icon>
+          <span class="pb-4">{{$store.state.productos.length}}</span>
         </v-btn>
-      
+       
+
         <v-btn icon :to="{name: 'Login'}">
           <v-icon color="#4F3701">mdi-account-outline</v-icon>
         </v-btn>
@@ -114,5 +116,10 @@ img {
   text-decoration: none;
   color: #4F3701;
   opacity: 0.7;
+}
+span {
+  font-family: 'Montserrat', sans-serif;
+  color: #4f3701;
+  font-size: .9rem;
 }
 </style>

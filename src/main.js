@@ -8,7 +8,7 @@ import Firebase from 'firebase'
 Vue.config.productionTip = false
 
 Firebase.initializeApp({
-  
+
 })
 
 new Vue({

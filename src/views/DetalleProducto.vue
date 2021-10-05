@@ -12,7 +12,7 @@
             <v-avatar
               size="155"
               width="1645px"
-              height="380px"
+              height="370px"
               tile
             >
               <v-img :src="producto.imagen"></v-img>
@@ -20,37 +20,24 @@
 
             <div class="pl-5">       
             <v-card-title
-              class="titulo-card pt-7 pb-5"
+              class="titulo-card pt-5 pt-md-10 pb-5"
               v-text="producto.nombre"
             ></v-card-title>
 
-            <v-card-subtitle class="texto-card pb-3 pb-lg-6" v-text="producto.descripcion"></v-card-subtitle>
-          <div class="d-flex pl-4">
-            <v-checkbox 
+            <v-card-subtitle class="texto-card pb-3 pt-lg-2 pb-lg-6" v-text="producto.descripcion"></v-card-subtitle>
+            
+            <p class="pl-4 mb-4">{{producto.personas}}</p> 
+            <span class="pl-4">$ {{producto.precio}}</span>
              
-              height="5px"
-              color="#4f3701"
-              value="Para 20 personas $21.000"
-            ></v-checkbox>
-            <span class="pt-3">Para 20 personas<span><b> $21.000</b></span></span>
-          </div> 
-          <div class="d-flex pl-4">
-            <v-checkbox
-              height="5px"
-              color="#4f3701"
-              value="Para 30 personas $26.000"
-            ></v-checkbox>
-            <span class="pt-3">Para 30 personas<span><b> $21.000</b></span></span>
-          </div>
-
             <v-card-actions>
 
             <v-btn
-              class="mt-4 ml-2 px-12"
+              class="mt-md-3 mt-lg-8 ml-2 px-12"
               rounded
               small
               dark
               color="#D9AF3A"
+              @click="agregarAlCarrito(index, producto)"
             >
               Agregar
             </v-btn>
@@ -72,23 +59,9 @@
             ></v-card-title>
 
             <v-card-subtitle class="texto-card pb-3" v-text="producto.descripcion"></v-card-subtitle>
-          <div class="d-flex pl-4">
-            <v-checkbox 
-             
-              height="5px"
-              color="#4f3701"
-              value="Para 20 personas $21.000"
-            ></v-checkbox>
-            <span class="pt-3">Para 20 personas<span><b> $21.000</b></span></span>
-          </div> 
-          <div class="d-flex pl-4">
-            <v-checkbox
-              height="5px"
-              color="#4f3701"
-              value="Para 30 personas $26.000"
-            ></v-checkbox>
-            <span class="pt-3">Para 30 personas<span><b> $21.000</b></span></span>
-          </div>
+            
+            <p class="pl-4 mb-4">{{producto.personas}}</p> 
+            <span class="pl-4">$ {{producto.precio}}</span>
 
             <v-card-actions>
 
@@ -126,6 +99,7 @@ export default {
   data: () => ({
     producto: null
   }),
+
   async beforeRouteEnter(to, from, next) {
     Firebase.firestore().collection(to.params.category).doc(to.params.id).get().then(document => {
       next(vm => {
@@ -134,10 +108,17 @@ export default {
     })
     await Store.dispatch('getSugerencias' )
   },
+
   mounted() {
     console.log(this.$route.params)
+  },
+
+  methods: {
+    agregarAlCarrito( item, index){
+      console.log('// Item ///', index);
+      this.$store.dispatch('agregarAlCarrito', {item, index})
+    }
   }
-  
 }
 </script>
 
@@ -155,9 +136,15 @@ export default {
   font-family: "Montserrat", sans-serif;
   color: #262626;
 }
+p {
+  font-family: "Montserrat", sans-serif;
+  color: #262626;
+  font-size: .95rem;
+}
 span {
   font-family: "Montserrat", sans-serif;
   color: #262626;
+  font-weight: 600;
 }
 h2 {
   font-family: "Montserrat", sans-serif;
@@ -175,9 +162,15 @@ h2 {
 @media (min-width: 780px) {
   .card-grande {
     display: block;
+    width: 90%;
   } 
   .card-chica {
     display: none;
   }
+}
+@media (min-width: 1950px) {
+  .card-grande {
+    width: 80%;
+  } 
 }
 </style>

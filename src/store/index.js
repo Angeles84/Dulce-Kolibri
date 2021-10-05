@@ -84,14 +84,14 @@ export default new Vuex.Store({
       // )
       commit("ADD_PRODUCTO_AL_CARRITO", index);
       console.log('productoPasadooo', [{index}]);
-      alert(`${ index.title} - Producto agregado con exito!`);
+      alert(`${ index.nombre} - Producto agregado con exito!`);
       console.log('este es', [state.productos]);
       
     },
-    agregarDetalle({ state, commit }, { torta}){
-      commit("ADD_PRODUCTO_AL_DETALLE", torta);
-      console.log('productoPasadooo', [{torta}]);
-      alert(`${ torta.nombre} - Producto agregado con exito!`);
+    agregarDetalle({ state, commit }, { i}){
+      commit("ADD_PRODUCTO_AL_DETALLE", i);
+      console.log('productoPasadooo', [{i}]);
+      alert(`${ i.nombre} - Producto agregado con exito!`);
       console.log('detalle', [state.detalles]);
       
     },
