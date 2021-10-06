@@ -27,7 +27,7 @@
             <v-card-subtitle class="texto-card pb-3 pt-lg-2 pb-lg-6" v-text="producto.descripcion"></v-card-subtitle>
             
             <p class="pl-4 mb-4">{{producto.personas}}</p> 
-            <span class="pl-4">$ {{producto.precio}}</span>
+            <span class="pl-4">$ {{producto.precio.toLocaleString()}}</span>
              
             <v-card-actions>
 
@@ -61,7 +61,7 @@
             <v-card-subtitle class="texto-card pb-3" v-text="producto.descripcion"></v-card-subtitle>
             
             <p class="pl-4 mb-4">{{producto.personas}}</p> 
-            <span class="pl-4">$ {{producto.precio}}</span>
+            <span class="pl-4">$ {{producto.precio.toLocaleString()}}</span>
 
             <v-card-actions>
 
