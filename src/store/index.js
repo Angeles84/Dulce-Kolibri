@@ -100,15 +100,15 @@ export default new Vuex.Store({
       commit("ADD_PRODUCTO_AL_CARRITO", { ...index, qty: 1});
       alert(`${ index.nombre} - Producto agregado con exito!`);
       console.log('este es', [state.productos]);
-      
     },
+    
     agregarDetalle({ state, commit }, { i}){
       commit("ADD_PRODUCTO_AL_DETALLE", i);
       console.log('productoPasadooo', [{i}]);
       alert(`${ i.nombre} - Producto agregado con exito!`);
-      console.log('detalle', [state.detalles]);
-      
+      console.log('detalle', [state.detalles]); 
     },
+
     getTortas(context) {
       Firebase.firestore()
         .collection('tortas')

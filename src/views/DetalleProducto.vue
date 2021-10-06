@@ -1,13 +1,13 @@
 <template>
-  <div >
+  <div v-if="producto">
     <v-container class="pt-16 px-4">
       <v-row class="pt-16">
         <v-col cols="12" 
         >
            <!--Card pantalla grande-->
           <v-card
-          class="mx-auto my-5 card-grande"
-         >
+            class="mx-auto my-5 card-grande"
+          >
           <div class="d-flex flex-no-wrap justify-space-between">
             <v-avatar
               size="155"
@@ -80,25 +80,25 @@
           </v-card>
         </v-col>
       </v-row>
-    </v-container>
+    </v-container> 
     <Destacados />
     <Footer />
   </div>
 </template>
 
 <script>
-import Sugerencias from '../components/Sugerencias'
- import Destacados from '../components/Destacados'
+import Destacados from '../components/Destacados'
 import Footer from '../components/Footer'
 import Store from '@/store'
 import Firebase from 'firebase'
 
 export default {
   name: 'DetalleProducto',
-  components: { Footer, Sugerencias, Destacados },
+  components: { Footer, Destacados },
   
   data: () => ({
-    producto: null
+    producto: null,
+    index: null,
   }),
   
 
@@ -108,7 +108,6 @@ export default {
         vm.producto = {id:document.id, ...document.data()}
       })
     })
-    await Store.dispatch('getSugerencias' )
     await Store.dispatch('getDestacados')
     next()
   },
@@ -163,6 +162,12 @@ h2 {
 .card-grande {
   display: none;
 } 
+.descuento {
+  font-size: 0.8rem;
+  opacity: 0.6;
+  font-weight: 500;
+  text-decoration: line-through;
+}
 @media (min-width: 780px) {
   .card-grande {
     display: block;

@@ -3,7 +3,7 @@
     <h2 class="mb-1">Tortas</h2>
     <img class="ramita-tortas" src="@/assets/ramita-tortas.png" alt="">
 
-    <v-container class="mt-5 mb-16">
+    <v-container class="mt-5 mb-10">
       <v-row>
         <v-col cols="12" md="6" lg="4" class="text-center"
           v-for="(torta, i) in $store.state.tortas"
@@ -12,27 +12,30 @@
           <img :src="torta.imagen" alt="" class="img-fluid img-producto" @click="irAlDetalle(i, torta)">
           <h3 class="mt-4 mb-0">{{torta.nombre}}</h3>
           <p class="mb-2">{{torta.personas}}</p>
-          <h4 class="mb-5">$ {{torta.precio.toLocaleString()}}</h4>
+          <h4 class="mb-5"><span class="pr-2">{{torta.descuento}} </span>$ {{torta.precio.toLocaleString()}}</h4>
         </v-col> 
       </v-row>
     </v-container>
+    <Sugerencias />
     <Footer />
   </div>
 </template>
 
 <script>
 import Footer from '../components/Footer'
+import Sugerencias from '../components/Sugerencias'
 import Store from '@/store'
 
 export default {
   name: 'Tortas',
-  components: { Footer },
+  components: { Footer, Sugerencias },
   data: () => ({
     
   }),
 
   async beforeRouteEnter(to, from, next) {
     await Store.dispatch('getTortas')
+    await Store.dispatch('getSugerencias' )
     next()
   },
   
@@ -83,6 +86,14 @@ h4 {
   font-size: 1rem;
   font-weight: 600;
   color: #262626;
+}
+span {
+  font-family: "Montserrat", sans-serif;
+  color: #262626;
+  font-size: 0.8rem;
+  opacity: 0.6;
+  font-weight: 500;
+  text-decoration: line-through;
 }
 @media (min-width: 960px) {
   .img-producto {

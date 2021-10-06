@@ -24,8 +24,8 @@
 
       <v-row
         class="text-left"
-        v-for="producto in $store.state.productos"
-        :key="producto.id"
+        v-for="(producto , id) in $store.state.productos"
+        :key="id"
       >
         <v-col cols="12" md="4" class="pl-10 d-flex">
           <div class="div-imagen pr-6">
@@ -76,8 +76,8 @@
       <hr>
       <v-row
         class=""
-        v-for="producto in $store.state.productos"
-        :key="producto.id"
+        v-for="(producto , id) in $store.state.productos"
+        :key="id"
       >
       <v-col cols="12">
       <div class="d-flex justify-space-between">
@@ -136,8 +136,9 @@
             </v-btn>
           </div>
         </v-col>
-          <!--Col sugerencias-->
+        <!--Col sugerencias-->
           <SugCarrito />
+        <!--Col sugerencias-->
       </v-row>
     </v-container>
     <Footer />
@@ -148,6 +149,7 @@ import Footer from "../components/Footer";
 import SugCarrito from "../components/SugerenciasCarrito";
 import CryptoJS from 'crypto-js'
 import axios from 'axios'
+import Store from '@/store'
 import querystring from 'query-string'
 
 export default {
@@ -157,8 +159,12 @@ export default {
     signature: "",
   }),
   
+  async beforeRouteEnter(to, from, next) {
+    await Store.dispatch('getSugerencias' )
+    next()
+  },
+
   methods: {
-  
     eliminarProducto(index) {
       this.$store.state.productos.splice(index, 1); 
     },
