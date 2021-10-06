@@ -24,8 +24,8 @@
 
       <v-row
         class="text-left"
-        v-for="(producto, id) in $store.state.productos"
-        :key="id"
+        v-for="producto in $store.state.productos"
+        :key="producto.id"
       >
         <v-col cols="12" md="4" class="pl-10 d-flex">
           <div class="div-imagen pr-6">
@@ -76,12 +76,13 @@
       <hr>
       <v-row
         class=""
-        v-for="(producto, id) in $store.state.productos"
-        :key="id"
+        v-for="producto in $store.state.productos"
+        :key="producto.id"
       >
       <v-col cols="12">
       <div class="d-flex justify-space-between">
         <div>
+          
           <img :src="producto.imagen" alt="" class="img-producto img-fluid" />
         </div>
         <div class="text-left pt-4 pr-6">
@@ -162,11 +163,15 @@ export default {
       this.$store.state.productos.splice(index, 1); 
     },
     montoApago() {
-      let valorTotal = 0;
-      this.$store.state.productos.forEach((producto) => {
-        valorTotal += this.items[producto.id].precio;
-      });
-      return valorTotal;
+      return this.$store.getters['sumaTotalProductos']
+      // let valorTotal = 0;
+      // this.$store.state.productos.forEach((producto) => {
+      //   console.log(typeof producto.id);
+      //   console.log('#####',producto.precio);
+      //   valorTotal += this.items[producto.id].precio;
+      // });
+      // console.log('valorTotal',  valorTotal);
+      // return valorTotal;
     },
     crearSignature(form) {
       const secretKey = '1b48ec1ca7efa74509196577aa3c4ecb0f7fdf11'

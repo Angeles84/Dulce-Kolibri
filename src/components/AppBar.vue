@@ -1,7 +1,7 @@
 <template>
   <v-app-bar
       app
-      color="dark"
+      color="white"
       class="px-5"
       height="82px"
     >
@@ -73,10 +73,8 @@
 
 <script>
 import { mapMutations, mapState } from "vuex";
-
 export default {
   name: 'App',
-
   data: () => ({
       items: [
         { title: 'Tortas' },
@@ -96,7 +94,6 @@ export default {
 </script>
 
 <style scoped>
-
 img {
   width: 11rem;
 }

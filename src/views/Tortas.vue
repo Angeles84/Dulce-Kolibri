@@ -42,7 +42,6 @@ export default {
   methods: {
     irAlDetalle( i, torta){
       this.$router.push(`/detalle/tortas/${torta.id}`)
-      console.log('// Item ///', i);
     }
   }
 }
