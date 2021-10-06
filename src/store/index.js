@@ -42,6 +42,16 @@ export default new Vuex.Store({
         return accumulator + producto.precio
       },0) 
     },
+    sumaTotalProductos(state) {
+      return state.productos.reduce((accumulator, producto) => {
+        return accumulator + (producto.precio * producto.qty)
+      }, 0)
+    },
+    sumaSubTotal(state) {
+      return state.productos.reduce((accumulator, producto) => {
+        return accumulator + (producto.precio * producto.qty)
+      }, 0)
+    },
   },
   mutations: {
     SET_DRAWER (state, payload) {
@@ -73,6 +83,12 @@ export default new Vuex.Store({
     GET_DESTACADOS(state, newSug) {
       state.destacados = newSug;
     },
+    ADD_QTY_TO_SHOPPINGCART_ITEM(state, productIndex) {
+      state.productos[productIndex].qty++;
+    },
+    SUB_QTY_TO_SHOPPINGCART_ITEM(state, productIndex) {
+      state.productos[productIndex].qty--;
+    },
   },
   actions: {
     agregarAlCarrito({ state, commit }, { index}){
@@ -82,7 +98,7 @@ export default new Vuex.Store({
       //   return productoCarrito.index === productos.index
       //   }
       // )
-      commit("ADD_PRODUCTO_AL_CARRITO", index);
+      commit("ADD_PRODUCTO_AL_CARRITO", { ...index, qty: 1});
       console.log('productoPasadooo', [{index}]);
       alert(`${ index.nombre} - Producto agregado con exito!`);
       console.log('este es', [state.productos]);
@@ -144,6 +160,14 @@ export default new Vuex.Store({
           querySnapshot.forEach((doc) => data.push({ id: doc.id, ...doc.data() }))
           context.commit('GET_DESTACADOS', data)
         })
+    },
+    agregarCantidadAlProductoDelCarritoDeCompras(context, indexProduct) {
+      console.log(indexProduct)
+      context.commit('ADD_QTY_TO_SHOPPINGCART_ITEM', indexProduct)
+    },
+
+    restarCantidadAlProductoDelCarritoDeCompras(context, indexProduct) {
+      context.commit('SUB_QTY_TO_SHOPPINGCART_ITEM', indexProduct)
     },
   },
   modules: {

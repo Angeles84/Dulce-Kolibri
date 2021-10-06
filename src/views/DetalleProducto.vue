@@ -81,24 +81,26 @@
         </v-col>
       </v-row>
     </v-container>
-    <Sugerencias />
+    <Destacados />
     <Footer />
   </div>
 </template>
 
 <script>
 import Sugerencias from '../components/Sugerencias'
+ import Destacados from '../components/Destacados'
 import Footer from '../components/Footer'
 import Store from '@/store'
 import Firebase from 'firebase'
 
 export default {
   name: 'DetalleProducto',
-  components: { Footer, Sugerencias },
+  components: { Footer, Sugerencias, Destacados },
   
   data: () => ({
     producto: null
   }),
+  
 
   async beforeRouteEnter(to, from, next) {
     Firebase.firestore().collection(to.params.category).doc(to.params.id).get().then(document => {
@@ -107,6 +109,8 @@ export default {
       })
     })
     await Store.dispatch('getSugerencias' )
+    await Store.dispatch('getDestacados')
+    next()
   },
 
   mounted() {
