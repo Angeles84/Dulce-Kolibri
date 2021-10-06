@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from 'axios'
 import Firebase from 'firebase'
 import 'firebase/firestore'
 
@@ -99,7 +98,6 @@ export default new Vuex.Store({
       //   }
       // )
       commit("ADD_PRODUCTO_AL_CARRITO", { ...index, qty: 1});
-      console.log('productoPasadooo', [{index}]);
       alert(`${ index.nombre} - Producto agregado con exito!`);
       console.log('este es', [state.productos]);
       

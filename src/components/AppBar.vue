@@ -73,10 +73,8 @@
 
 <script>
 import { mapMutations, mapState } from "vuex";
-
 export default {
   name: 'App',
-
   data: () => ({
       items: [
         { title: 'Tortas' },
@@ -96,7 +94,6 @@ export default {
 </script>
 
 <style scoped>
-
 img {
   width: 11rem;
 }
