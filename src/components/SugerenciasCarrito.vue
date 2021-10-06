@@ -11,7 +11,7 @@
         </div>
         <div class="pt-4 pt-md-2 pt-lg-4 pr-16 pr-md-0 pr-lg-16">
           <h4>{{sugerencia.nombre}}</h4>
-          <p><b>$ {{sugerencia.precio.toLocaleString()}}</b></p>
+          <p><b>$ {{sugerencia.precio.toLocaleString('de-DE', {minimumFractionDigits: 0})}}</b></p>
         </div>
         <div class="pt-5">
           <v-btn

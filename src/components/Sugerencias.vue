@@ -10,7 +10,7 @@
         <img :src="sugerencia.imagen" alt="" class="img-fluid img-producto" @click="irAlDetalle(i, sugerencia)">
         <h3 class="mt-4 mb-0">{{sugerencia.nombre}}</h3>
         <p class="mb-2">{{sugerencia.personas}}</p>
-        <h4 class="mb-5">$ {{sugerencia.precio.toLocaleString()}}</h4>
+        <h4 class="mb-5">$ {{sugerencia.precio.toLocaleString('de-DE', {minimumFractionDigits: 0})}}</h4>
       </v-col> 
     </v-row>
   </v-container>

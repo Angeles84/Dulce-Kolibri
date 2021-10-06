@@ -46,9 +46,9 @@ export default new Vuex.Store({
         return accumulator + (producto.precio * producto.qty)
       }, 0)
     },
-    sumaSubTotal(state) {
+    sumaSubTotal(state, index) {
       return state.productos.reduce((accumulator, producto) => {
-        return accumulator + (producto.precio * producto.qty)
+        return accumulator + (producto.precio[index] * producto.qty)
       }, 0)
     },
   },
@@ -101,7 +101,7 @@ export default new Vuex.Store({
       alert(`${ index.nombre} - Producto agregado con exito!`);
       console.log('este es', [state.productos]);
     },
-    
+
     agregarDetalle({ state, commit }, { i}){
       commit("ADD_PRODUCTO_AL_DETALLE", i);
       console.log('productoPasadooo', [{i}]);

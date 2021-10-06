@@ -37,7 +37,7 @@
           </div>
         </v-col>
         <v-col cols="12" md="2">
-          <h4 class="pt-7 font-weight-bold">$ {{producto.precio.toLocaleString() }}</h4>
+          <h4 class="pt-7 font-weight-bold">$ {{producto.precio.toLocaleString("de-DE", {minimumFractionDigits: 0})}}</h4>
         </v-col>
         <v-col cols="12" md="2" class="pl-8">
           <div class="pt-5">
@@ -54,7 +54,7 @@
           <div class="d-flex justify-space-between pr-5">
             <h4
               class="pt-7 font-weight-bold"
-              v-text="`$ ${producto.precio.toLocaleString()}`"
+              v-text="`$ ${producto.precio.toLocaleString('de-DE', {minimumFractionDigits: 0})}`"
             ></h4>
             <v-btn small plain class="mt-5" @click="eliminarProducto(id)">
               <v-icon color="#c59206">mdi-delete</v-icon>
@@ -90,10 +90,14 @@
           <p v-text="producto.personas"></p>
         </div>
         <div>
-          <h4 class="pt-7 font-weight-bold">$ {{producto.precio.toLocaleString() }}</h4>
-          <button class="btn-menos mr-1">-</button>
-          <span class="px-1"><b> 1 </b></span>
-          <button class="btn-mas">+</button>
+          <h4 class="pt-7 font-weight-bold">$ {{producto.precio.toLocaleString('de-DE', {minimumFractionDigits: 0})}}</h4>
+          <button class="btn-menos mr-1"
+              @click="$store.dispatch('restarCantidadAlProductoDelCarritoDeCompras' , id)" :disabled="producto.qty === 1"
+            >-</button>
+            <span class="px-1"><b>{{producto.qty}}</b></span>
+            <button class="btn-mas"
+              @click="$store.dispatch('agregarCantidadAlProductoDelCarritoDeCompras' , id)"
+            >+</button>
           <div class="pt-3">
             <v-btn small plain class="" @click="eliminarProducto(id)">
               <v-icon color="#c59206">mdi-delete</v-icon>
@@ -114,14 +118,14 @@
             <h3 class="mb-6">Total del carrito</h3>
             <div class="d-flex justify-space-between">
               <h4>Subtotal</h4>
-              <h4 v-text="`$ ${$store.getters['sumaTotalProductos'].toLocaleString()}`"></h4>
+              <h4 v-text="`$ ${$store.getters['sumaTotalProductos'].toLocaleString('de-DE', {minimumFractionDigits: 0})}`"></h4>
             </div>
             <hr />
             <div class="d-flex justify-space-between mt-6 mb-4">
               <h4><b>Total</b></h4>
               <h4
                 class="font-weight-bold"
-                v-text="`$ ${$store.getters['sumaTotalProductos'].toLocaleString()}`"
+                v-text="`$ ${$store.getters['sumaTotalProductos'].toLocaleString('de-DE', {minimumFractionDigits: 0})}`"
               ></h4>
             </div>
             <v-btn

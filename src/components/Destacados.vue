@@ -29,7 +29,7 @@
 
             <v-card-subtitle class="texto-card pb-3" v-text="item.descripcion"></v-card-subtitle>
 
-            <v-card-text class="precio-card pb-2">$ {{item.precio.toLocaleString()}}</v-card-text>
+            <v-card-text class="precio-card pb-2">$ {{item.precio.toLocaleString('de-DE', {minimumFractionDigits: 0})}}</v-card-text>
 
             <v-card-actions>
 
