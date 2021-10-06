@@ -48,7 +48,7 @@ export default new Vuex.Store({
     },
     sumaSubTotal(state, index) {
       return state.productos.reduce((accumulator, producto) => {
-        return accumulator + (producto.precio[index] * producto.qty)
+        return accumulator + (Number.parseInt(producto.precio[index]) * producto.qty)
       }, 0)
     },
   },

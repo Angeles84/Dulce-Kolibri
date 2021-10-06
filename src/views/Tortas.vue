@@ -16,7 +16,6 @@
         </v-col> 
       </v-row>
     </v-container>
-    <Sugerencias />
     <Footer />
   </div>
 </template>

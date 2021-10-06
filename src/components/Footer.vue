@@ -16,14 +16,14 @@
             </ul>
             <ul class="list-none">
                 <li class="text-bold">Contacto</li>
-                <li><v-icon color="#4F3701">mdi-whatsapp</v-icon><span> +569 12345678</span></li>
+                <li><v-icon color="#4F3701">mdi-whatsapp</v-icon><span> +56 9 12345678</span></li>
                 <li><v-icon color="#4F3701">mdi-email-outline</v-icon><span> dulcekolibri@gmail.com</span></li>
             </ul>
             <div class="row only-mob">
             <img src="@/assets/logo_kolibri.png" class="logo-kolibri-2 mt-8">
             <ul class="list-none-mob text-footer-mob mt-8">
                 <li class="instagram"><a href="https://www.instagram.com/dulce_kolibri/?hl=es" target="_blank"><v-icon color="#4F3701">mdi-instagram</v-icon><span> @dulcekolibri</span></a></li>
-                <li><v-icon color="#4F3701">mdi-whatsapp</v-icon><span> +569 12345678</span></li>
+                <li><v-icon color="#4F3701">mdi-whatsapp</v-icon><span> +56 9 12345678</span></li>
                 <li><v-icon color="#4F3701">mdi-email-outline</v-icon><span> dulcekolibri@gmail.com</span></li>
             </ul>
             </div>

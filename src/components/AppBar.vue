@@ -5,8 +5,9 @@
       class="px-5"
       height="82px"
     >
+    <router-link :to="{name: 'Inicio'}">
       <img src="@/assets/logo-menu.png" alt="">
-
+    </router-link>
       <v-spacer></v-spacer>
       <v-toolbar-items v-if="$vuetify.breakpoint.mdAndUp" class="shrink">
         <v-btn exact color="#4F3701" plain :to="{name: 'Inicio'}"
