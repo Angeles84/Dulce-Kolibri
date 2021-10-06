@@ -1,34 +1,34 @@
 <template>
   <v-col cols="12" md="6">
-          <div class="borde-columna py-6 px-8">
-            <h3 class="mb-6">Sugerencias</h3>
-            <div class="d-flex justify-space-between"
-              v-for="(sugerencia, i) in $store.state.sugerencias"
-              :key="i"
-            >
-              <div class="div-imagen pr-6">
-                <img :src="sugerencia.imagen" alt="" class="img-producto img-fluid mb-4"/>
-              </div>
-              <div class="pt-4 pt-md-2 pt-lg-4 pr-16 pr-md-0 pr-lg-16">
-                <h4>{{sugerencia.nombre}}</h4>
-                <p><b>$ {{sugerencia.precio}}</b></p>
-              </div>
-              <div class="pt-5">
-                <v-btn
-                  class="px-4"
-                  rounded
-                  small
-                  outlined
-                  dark
-                  color="#D9AF3A"
-                  @click="agregarAlCarrito(i, sugerencia)"
-                >
-                  Agregar
-                </v-btn>
-              </div>
-            </div>
-          </div>
-        </v-col>
+    <div class="borde-columna py-6 px-8">
+      <h3 class="mb-6">Sugerencias</h3>
+      <div class="d-flex justify-space-between"
+        v-for="(sugerencia, i) in $store.state.sugerencias"
+        :key="i"
+      >
+        <div class="div-imagen pr-6">
+          <img :src="sugerencia.imagen" alt="" class="img-producto img-fluid mb-4"/>
+        </div>
+        <div class="pt-4 pt-md-2 pt-lg-4 pr-16 pr-md-0 pr-lg-16">
+          <h4>{{sugerencia.nombre}}</h4>
+          <p><b>$ {{sugerencia.precio.toLocaleString()}}</b></p>
+        </div>
+        <div class="pt-5">
+          <v-btn
+            class="px-4"
+            rounded
+            small
+            outlined
+            dark
+            color="#D9AF3A"
+            @click="agregarAlCarrito(i, sugerencia)"
+          >
+            Agregar
+          </v-btn>
+        </div>
+      </div>
+    </div>
+  </v-col>
 </template>
 
 <script>

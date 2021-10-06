@@ -12,7 +12,7 @@
           <img :src="torta.imagen" alt="" class="img-fluid img-producto" @click="irAlDetalle(i, torta)">
           <h3 class="mt-4 mb-0">{{torta.nombre}}</h3>
           <p class="mb-2">{{torta.personas}}</p>
-          <h4 class="mb-5">$ {{torta.precio}}</h4>
+          <h4 class="mb-5">$ {{torta.precio.toLocaleString()}}</h4>
         </v-col> 
       </v-row>
     </v-container>
