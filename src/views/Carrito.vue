@@ -22,11 +22,7 @@
 
       <hr />
 
-      <v-row
-        class="text-left"
-        v-for="(producto, id) in $store.state.productos"
-        :key="id"
-      >
+      <v-row class="text-left" v-for="(producto, id) in $store.state.productos" :key="id">
         <v-col cols="12" md="4" class="pl-10 d-flex">
           <div class="div-imagen pr-6">
             <img :src="producto.imagen" alt="" class="img-producto img-fluid" />
@@ -40,8 +36,8 @@
           <h4 class="pt-7 font-weight-bold">
             $
             {{
-              producto.precio.toLocaleString("de-DE", {
-                minimumFractionDigits: 0,
+              producto.precio.toLocaleString('de-DE', {
+                minimumFractionDigits: 0
               })
             }}
           </h4>
@@ -50,12 +46,7 @@
           <div class="pt-5">
             <button
               class="btn-menos mr-1"
-              @click="
-                $store.dispatch(
-                  'restarCantidadAlProductoDelCarritoDeCompras',
-                  id
-                )
-              "
+              @click="$store.dispatch('restarCantidadAlProductoDelCarritoDeCompras', id)"
               :disabled="producto.qty === 1"
             >
               -
@@ -65,12 +56,7 @@
             >
             <button
               class="btn-mas"
-              @click="
-                $store.dispatch(
-                  'agregarCantidadAlProductoDelCarritoDeCompras',
-                  id
-                )
-              "
+              @click="$store.dispatch('agregarCantidadAlProductoDelCarritoDeCompras', id)"
             >
               +
             </button>
@@ -82,7 +68,7 @@
               class="pt-7 font-weight-bold"
               v-text="
                 `$ ${producto.precio.toLocaleString('de-DE', {
-                  minimumFractionDigits: 0,
+                  minimumFractionDigits: 0
                 })}`
               "
             ></h4>
@@ -102,19 +88,11 @@
         <h3>Precio</h3>
       </div>
       <hr />
-      <v-row
-        class=""
-        v-for="(producto, id) in $store.state.productos"
-        :key="id"
-      >
+      <v-row class="" v-for="(producto, id) in $store.state.productos" :key="id">
         <v-col cols="12">
           <div class="d-flex justify-space-between">
             <div>
-              <img
-                :src="producto.imagen"
-                alt=""
-                class="img-producto img-fluid"
-              />
+              <img :src="producto.imagen" alt="" class="img-producto img-fluid" />
             </div>
             <div class="text-left pt-4 pr-6">
               <h4 v-text="producto.nombre"></h4>
@@ -124,19 +102,14 @@
               <h4 class="pt-7 font-weight-bold">
                 $
                 {{
-                  producto.precio.toLocaleString("de-DE", {
-                    minimumFractionDigits: 0,
+                  producto.precio.toLocaleString('de-DE', {
+                    minimumFractionDigits: 0
                   })
                 }}
               </h4>
               <button
                 class="btn-menos mr-1"
-                @click="
-                  $store.dispatch(
-                    'restarCantidadAlProductoDelCarritoDeCompras',
-                    id
-                  )
-                "
+                @click="$store.dispatch('restarCantidadAlProductoDelCarritoDeCompras', id)"
                 :disabled="producto.qty === 1"
               >
                 -
@@ -146,12 +119,7 @@
               >
               <button
                 class="btn-mas"
-                @click="
-                  $store.dispatch(
-                    'agregarCantidadAlProductoDelCarritoDeCompras',
-                    id
-                  )
-                "
+                @click="$store.dispatch('agregarCantidadAlProductoDelCarritoDeCompras', id)"
               >
                 +
               </button>
@@ -177,10 +145,9 @@
               <h4>Subtotal</h4>
               <h4
                 v-text="
-                  `$ ${$store.getters['sumaTotalProductos'].toLocaleString(
-                    'de-DE',
-                    { minimumFractionDigits: 0 }
-                  )}`
+                  `$ ${$store.getters['sumaTotalProductos'].toLocaleString('de-DE', {
+                    minimumFractionDigits: 0
+                  })}`
                 "
               ></h4>
             </div>
@@ -190,21 +157,13 @@
               <h4
                 class="font-weight-bold"
                 v-text="
-                  `$ ${$store.getters['sumaTotalProductos'].toLocaleString(
-                    'de-DE',
-                    { minimumFractionDigits: 0 }
-                  )}`
+                  `$ ${$store.getters['sumaTotalProductos'].toLocaleString('de-DE', {
+                    minimumFractionDigits: 0
+                  })}`
                 "
               ></h4>
             </div>
-            <v-btn
-              color="#D9AF3A"
-              class="mt-5 mb-3"
-              block
-              rounded
-              dark
-              @click="cobrar()"
-            >
+            <v-btn color="#D9AF3A" class="mt-5 mb-3" block rounded dark @click="cobrar()">
               COMPRAR
             </v-btn>
           </div>
@@ -218,31 +177,31 @@
   </div>
 </template>
 <script>
-import Footer from "../components/Footer";
-import SugCarrito from "../components/SugerenciasCarrito";
-import CryptoJS from "crypto-js";
-import axios from "axios";
-import Store from "@/store";
-import querystring from "query-string";
+import Footer from '../components/Footer'
+import SugCarrito from '../components/SugerenciasCarrito'
+import CryptoJS from 'crypto-js'
+import axios from 'axios'
+import Store from '@/store'
+import querystring from 'query-string'
 
 export default {
-  name: "Carrito",
+  name: 'Carrito',
   components: { Footer, SugCarrito },
   data: () => ({
-    signature: "",
+    signature: ''
   }),
 
   async beforeRouteEnter(to, from, next) {
-    await Store.dispatch("getSugerencias");
-    next();
+    await Store.dispatch('getSugerencias')
+    next()
   },
 
   methods: {
     eliminarProducto(index) {
-      this.$store.state.productos.splice(index, 1);
+      this.$store.state.productos.splice(index, 1)
     },
     montoApago() {
-      return this.$store.getters["sumaTotalProductos"];
+      return this.$store.getters['sumaTotalProductos']
       // let valorTotal = 0;
       // this.$store.state.productos.forEach((producto) => {
       //   console.log(typeof producto.id);
@@ -253,51 +212,51 @@ export default {
       // return valorTotal;
     },
     crearSignature(form) {
-      const secretKey = process.env.VUE_APP_FLOW_SECRET_KEY;
-      let signature = "";
-      Object.keys(form).forEach((key) => {
-        signature += `${key}${form[key]}`;
-      });
-      console.log(signature);
-      let hash = CryptoJS.HmacSHA256(signature, secretKey);
-      console.log("hash", hash.toString());
-      return hash.toString();
+      const secretKey = process.env.VUE_APP_FLOW_SECRET_KEY
+      let signature = ''
+      Object.keys(form).forEach(key => {
+        signature += `${key}${form[key]}`
+      })
+      console.log(signature)
+      let hash = CryptoJS.HmacSHA256(signature, secretKey)
+      console.log('hash', hash.toString())
+      return hash.toString()
     },
     crearOrden(form) {
       axios
-        .post("https://sockets-ceto1.herokuapp.com/payments", form)
-        .then((resp) => {
-          console.log("respuestaaa", resp.data.url);
+        .post('https://sockets-ceto1.herokuapp.com/payments', form)
+        .then(resp => {
+          console.log('respuestaaa', resp.data.url)
           setTimeout(() => {
-            window.open(resp.data.url);
-          }, 1000);
+            window.open(resp.data.url)
+          }, 1000)
           //redireccionar a form.data.url
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch(error => {
+          console.log(error)
+        })
     },
     cobrar() {
-      const order = Math.round(Math.random() * 100);
+      const order = Math.round(Math.random() * 100)
       const form = {
         amount: this.montoApago(),
         apiKey: process.env.VUE_APP_FLOW_API_KEY,
         commerceOrder: order,
-        email: "vriquelmefe@gmail.com",
+        email: 'vriquelmefe@gmail.com',
         subject: `Compra orden numero: ${order}`,
         urlConfirmation: process.env.VUE_APP_FLOW_URL_CONFIRMATION,
-        urlReturn: process.env.VUE_APP_FLOW_URL_RETURN,
-      };
-      form.s = this.crearSignature(form);
-      this.crearOrden(form);
-    },
-  },
-};
+        urlReturn: process.env.VUE_APP_FLOW_URL_RETURN
+      }
+      form.s = this.crearSignature(form)
+      this.crearOrden(form)
+    }
+  }
+}
 </script>
 
 <style scoped>
 h2 {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 2rem;
   font-weight: bold;
   color: #4f3701;
@@ -309,7 +268,7 @@ h2 {
 h3 {
   color: #262626;
   font-size: 1.2em;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 600;
 }
 hr {
@@ -322,13 +281,13 @@ hr {
 h4 {
   color: #262626;
   font-size: 0.9em;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 500;
 }
 p {
   color: #262626;
   font-size: 0.8em;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 400;
 }
 .btn-menos,
