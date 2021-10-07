@@ -30,7 +30,7 @@ export default {
   name: 'Tortas',
   components: { Footer, Sugerencias },
   data: () => ({
-    
+    vertical: true,
   }),
 
   async beforeRouteEnter(to, from, next) {

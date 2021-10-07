@@ -33,7 +33,7 @@
           </div>
           <div class="pt-md-2 pt-lg-4">
             <h4 v-text="producto.nombre"></h4>
-            <p v-text="producto.personas"></p>
+            <p class="mb-0" v-text="producto.personas"></p>
           </div>
         </v-col>
         <v-col cols="12" md="2">
@@ -54,7 +54,7 @@
           <div class="d-flex justify-space-between pr-5">
             <h4
               class="pt-7 font-weight-bold"
-              v-text="`$ ${producto.precio.toLocaleString('de-DE', {minimumFractionDigits: 0})}`"
+              v-text="`$ ${(producto.precio * producto.qty).toLocaleString('de-DE', {minimumFractionDigits: 0})}`"
             ></h4>
             <v-btn small plain class="mt-5" @click="eliminarProducto(id)">
               <v-icon color="#c59206">mdi-delete</v-icon>
@@ -69,7 +69,7 @@
     <v-container
       class="contenedor-chico px-4"
     >
-      <div class="d-flex justify-space-between">
+      <div class="d-flex justify-space-between pt-4">
         <h3>Producto</h3>
         <h3>Precio</h3>
       </div>
@@ -79,18 +79,18 @@
         v-for="(producto , id) in $store.state.productos"
         :key="id"
       >
-      <v-col cols="12">
+      <v-col cols="12 pb-0">
       <div class="d-flex justify-space-between">
         <div>
           
           <img :src="producto.imagen" alt="" class="img-producto img-fluid" />
         </div>
-        <div class="text-left pt-4 pr-6">
+        <div class="text-left pt-4 pr-4">
           <h4 v-text="producto.nombre"></h4>
           <p v-text="producto.personas"></p>
         </div>
         <div>
-          <h4 class="pt-7 font-weight-bold">$ {{producto.precio.toLocaleString('de-DE', {minimumFractionDigits: 0})}}</h4>
+          <h4 class="pt-2 font-weight-bold">$ {{producto.precio.toLocaleString('de-DE', {minimumFractionDigits: 0})}}</h4>
           <button class="btn-menos mr-1"
               @click="$store.dispatch('restarCantidadAlProductoDelCarritoDeCompras' , id)" :disabled="producto.qty === 1"
             >-</button>

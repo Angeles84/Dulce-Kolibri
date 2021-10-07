@@ -7,6 +7,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    snackbar: false,
     drawer: false,
     productos: [],
     detalles: [],
@@ -46,11 +47,7 @@ export default new Vuex.Store({
         return accumulator + (producto.precio * producto.qty)
       }, 0)
     },
-    sumaSubTotal(state, index) {
-      return state.productos.reduce((accumulator, producto) => {
-        return accumulator + (Number.parseInt(producto.precio[index]) * producto.qty)
-      }, 0)
-    },
+    
   },
   mutations: {
     SET_DRAWER (state, payload) {

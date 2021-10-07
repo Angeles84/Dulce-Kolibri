@@ -1,5 +1,5 @@
 <template>
-  <footer>
+  <footer id="footer">
       <div class="footer-menu text-left">
         <img src="@/assets/footer.jpg" class="footer-img">
         <div class="list-absolute">

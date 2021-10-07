@@ -47,17 +47,14 @@
         </v-list-item>
       </v-list>
     </v-menu>
-
-        <v-btn exact color="#4F3701" plain :to="{name: 'Contacto'}"
+      
+        <v-btn exact color="#4F3701" plain href="#footer" class="mr-8"
         >
           Contacto
         </v-btn>
       
-        <v-btn icon class="ml-16">
-          <v-icon color="#4F3701">mdi-magnify</v-icon>
-        </v-btn>
 
-        <v-btn icon :to="{name: 'Carrito'}">
+        <v-btn icon :to="{name: 'Carrito'}" class="ml-16">
           <v-icon color="#4F3701" >mdi-cart-outline</v-icon>
           <span class="pb-4">{{$store.state.productos.length}}</span>
         </v-btn>

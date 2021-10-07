@@ -42,6 +42,12 @@ export default {
 };
 </script>
 
+<style>
+html {
+  scroll-behavior: smooth;
+}
+</style>
+
 <style scoped>
 .vista-enter-active, .vista-leave-active {
     transition: opacity .3s;
