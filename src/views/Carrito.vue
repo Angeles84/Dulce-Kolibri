@@ -212,14 +212,14 @@ export default {
       // return valorTotal;
     },
     crearSignature(form) {
-      const secretKey = process.env.VUE_APP_FLOW_SECRET_KEY
-      let signature = ''
-      Object.keys(form).forEach(key => {
+      const secretKey = '1b48ec1ca7efa74509196577aa3c4ecb0f7fdf11'
+      let signature = '';
+      Object.keys(form).forEach((key) => {
         signature += `${key}${form[key]}`
       })
-      console.log(signature)
-      let hash = CryptoJS.HmacSHA256(signature, secretKey)
-      console.log('hash', hash.toString())
+      console.log(signature);
+      let hash = CryptoJS.HmacSHA256(signature, secretKey);
+      console.log('hash',hash.toString());
       return hash.toString()
     },
     crearOrden(form) {
@@ -237,16 +237,18 @@ export default {
         })
     },
     cobrar() {
-      const order = Math.round(Math.random() * 100)
+      const order = Math.round(Math.random()*100)
+      const urlConfirmation = 'http://flowosccomerce.tuxpan.com/csepulveda/api2/pay/confirmPay.php' 
+      const urlReturn = 'http://flowosccomerce.tuxpan.com/csepulveda/api2/pay/resultPay.php'
       const form = {
         amount: this.montoApago(),
-        apiKey: process.env.VUE_APP_FLOW_API_KEY,
+        apiKey: "53305F1C-A536-4332-9718-7C31DCEL94C8",
         commerceOrder: order,
-        email: 'vriquelmefe@gmail.com',
+        email: "vriquelmefe@gmail.com",
         subject: `Compra orden numero: ${order}`,
-        urlConfirmation: process.env.VUE_APP_FLOW_URL_CONFIRMATION,
-        urlReturn: process.env.VUE_APP_FLOW_URL_RETURN
-      }
+        urlConfirmation: urlConfirmation,
+        urlReturn: urlReturn,
+      };
       form.s = this.crearSignature(form)
       this.crearOrden(form)
     }
