@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Firebase from 'firebase/app'
 
 Vue.use(VueRouter)
 
@@ -60,7 +59,7 @@ const routes = [
     path: '/detalle/:category/:id',
     name: 'DetalleProducto',
     component: () => import('../views/DetalleProducto.vue')
-  },
+  }
 ]
 
 const router = new VueRouter({
