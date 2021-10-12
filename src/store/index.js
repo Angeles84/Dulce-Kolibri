@@ -8,7 +8,6 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    snackbar: false,
     drawer: false,
     productos: [],
     detalles: [],

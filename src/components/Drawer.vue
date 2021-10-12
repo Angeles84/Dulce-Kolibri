@@ -45,7 +45,6 @@ export default {
       'Tortas',
       'Galletas',
       'Postres',
-      'Contacto',
     ],
   }),
   computed: {

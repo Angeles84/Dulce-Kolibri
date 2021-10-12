@@ -9,7 +9,7 @@
           v-for="(postre, i) in $store.state.postres"
           :key="i"
         >
-          <img :src="postre.imagen" alt="" class="img-fluid img-producto" @click="irAlDetalle(i, postre)">
+          <img :src="postre.imagen" alt="" class="img-fluid img-producto testing" @click="irAlDetalle(i, postre)">
           <h3 class="mt-4 mb-0">{{postre.nombre}}</h3>
           <p class="mb-2">{{postre.personas}}</p>
           <h4 class="mb-5">$ {{postre.precio.toLocaleString("de-DE", {minimumFractionDigits: 0})}}</h4>
@@ -45,7 +45,6 @@ export default {
   methods: {
     irAlDetalle( i, postre){
       this.$router.push(`/detalle/postres/${postre.id}`)
-      console.log('// Item ///', i);
     }
   }
 }

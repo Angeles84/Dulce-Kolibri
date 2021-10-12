@@ -78,11 +78,9 @@ export default {
     },
     irAlDetallePostres( i, postre){
       this.$router.push(`/detalle/postres/${postre.id}`)
-      console.log('// Item ///', i);
     },
     irAlDetalleGalletas( i, galleta){
       this.$router.push(`/detalle/galletas/${galleta.id}`)
-      console.log('// Item ///', i);
     }
   }
 }

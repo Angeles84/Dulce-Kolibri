@@ -2,6 +2,7 @@
   <v-container class="text-center mb-16">
     <h2 class="mt-4">Sugerencias</h2>
     <img class="ramita-tortas" src="@/assets/ramita-tortas.png" alt="">
+
     <v-row class="mt-5">
       <v-col cols="12" md="6" lg="4" class="text-center"
         v-for="(sugerencia, i) in $store.state.sugerencias"
@@ -21,17 +22,15 @@
 export default {
   name: 'Sugerencias',
   components: {  },
-  data: () => ({
-    
+  data: () => ({ 
   }),
   
-  computed: {
-    
-  }, 
+  computed: { 
+  },
+
   methods: {
     irAlDetalle( i, sugerencia){
       this.$router.push(`/detalle/sugerencias/${sugerencia.id}`)
-      console.log('// Item ///', i);
     }
   }
 }

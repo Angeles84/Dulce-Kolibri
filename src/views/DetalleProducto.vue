@@ -32,7 +32,7 @@
             <v-card-actions>
 
             <v-btn
-              class="mt-md-3 mt-lg-8 ml-2 px-12"
+              class="mt-md-3 mt-lg-8 ml-2 px-12 testing"
               rounded
               small
               dark
@@ -72,6 +72,7 @@
               dark
               block
               color="#D9AF3A"
+              @click="agregarAlCarrito(index, producto)"
             >
               Agregar
             </v-btn>
@@ -111,7 +112,7 @@ export default {
     await Store.dispatch('getDestacados')
     next()
   },
-
+  
   mounted() {
     console.log(this.$route.params)
   },

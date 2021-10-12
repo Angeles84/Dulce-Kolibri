@@ -72,7 +72,7 @@
                 })}`
               "
             ></h4>
-            <v-btn small plain class="mt-5" @click="eliminarProducto(id)">
+            <v-btn small plain class="mt-5 testing" @click="eliminarProducto(id)">
               <v-icon color="#c59206">mdi-delete</v-icon>
             </v-btn>
           </div>
@@ -99,10 +99,10 @@
               <p v-text="producto.personas"></p>
             </div>
             <div>
-              <h4 class="pt-7 font-weight-bold">
+              <h4 class="pt-4 mb-3 font-weight-bold">
                 $
                 {{
-                  producto.precio.toLocaleString('de-DE', {
+                  (producto.precio * producto.qty).toLocaleString('de-DE', {
                     minimumFractionDigits: 0
                   })
                 }}
@@ -130,7 +130,7 @@
               </div>
             </div>
           </div>
-          <hr />
+          <hr  class="mb-1">
         </v-col>
       </v-row>
     </v-container>
