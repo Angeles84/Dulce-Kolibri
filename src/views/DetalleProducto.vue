@@ -32,7 +32,7 @@
             <v-card-actions>
 
             <v-btn
-              class="mt-md-3 mt-lg-8 ml-2 px-12 testing"
+              class="mt-md-2 mt-lg-7 ml-2 px-12 testing"
               rounded
               small
               dark
@@ -61,7 +61,7 @@
             <v-card-subtitle class="texto-card pb-3" v-text="producto.descripcion"></v-card-subtitle>
             
             <p class="pl-4 mb-4">{{producto.personas}}</p> 
-            <span class="pl-4">$ {{producto.precio.toLocaleString()}}</span>
+            <span class="pl-4">$ {{producto.precio.toLocaleString("de-DE", {minimumFractionDigits: 0})}}</span>
 
             <v-card-actions>
 
@@ -149,6 +149,7 @@ span {
   font-family: "Montserrat", sans-serif;
   color: #262626;
   font-weight: 600;
+  font-size: 1.2em;
 }
 h2 {
   font-family: "Montserrat", sans-serif;

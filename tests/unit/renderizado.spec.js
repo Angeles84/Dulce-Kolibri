@@ -1,21 +1,21 @@
-import { shallowMount } from '@vue/test-utils'
-import AppBar from '@/components/AppBar.vue'
+import { shallowMount , mount } from '@vue/test-utils'
+import Footer from '@/components/Footer.vue'
 
 
-describe( 'AppBar' , () => {
+describe( 'Footer' , () => {
 
-  it( 'Que vaya al detalle' , () => {
-    const mockRouter = {
-      push: jest.fn()
+  it( 'Que el html sea igual a la ruta' , () => {
+    const $route = {
+      name: 'Nosotros'
     }
-    const wrapper = shallowMount( AppBar, {
+    const wrapper = shallowMount( Footer, {
       global: {
         mocks:{
-          $router: mockRouter
+          $route
         }
       }
     })
-    wrapper.find('v-btn').trigger('click')
-    expect(mockRouter.push).toHaveBeenCalled()
-  })
+    let ruta = wrapper.find('li.testing')
+    expect(ruta.text()).toEqual($route.name)
+  }) 
 })
