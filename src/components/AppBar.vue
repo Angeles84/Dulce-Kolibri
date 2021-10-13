@@ -76,7 +76,7 @@
         <v-tooltip bottom>
         <template v-slot:activator="{ on, attrs }">
         <v-btn v-bind="attrs" v-on="on" icon @click="logout">
-          <v-icon  color="#4F3701">mdi-logout</v-icon>
+          <v-icon color="#4F3701">mdi-logout</v-icon>
         </v-btn>
         </template>
         <span class="text-white">Cerrar sesión</span>

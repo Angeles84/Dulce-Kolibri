@@ -3,9 +3,9 @@
     <v-container fluid class="px-0 m-0 pb-16">
       <v-row class="p-0 m-0">
         <v-col cols="12" md="6" class="columna-1 pr-md-10 pb-0">
-          <h2 class="mb-10">!Hola {{this.$store.state.user.displayName}}!</h2>
+          <h2 class="mb-16">!Hola {{this.$store.state.user.displayName}}!</h2>
           <h5 class="mb-4">Te haz logueado con éxito</h5>
-          <p class="mb-10">Ahora puede acceder al carrito de compras</p>
+          <p class="mb-10">Ahora puedes acceder al carrito de compras</p>
           <div class="pr-16 mt-16">
             <v-btn
               color="#D9AF3A"
@@ -96,12 +96,16 @@ h2 {
   color: #4f3701;
   padding-top: 4rem;
 }
+h5 {
+  font-family: "Montserrat", sans-serif;
+  color: #212121;
+  font-weight: 600;
+}
 .v-btn {
   text-transform: capitalize;
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
 }
-
 h1 {
   color: #262626;
   font-family: "Yesteryear", cursive;
