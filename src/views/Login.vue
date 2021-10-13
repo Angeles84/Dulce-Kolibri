@@ -3,56 +3,21 @@
     <v-container fluid class="px-0 m-0 pb-16">
       <v-row class="p-0 m-0">
         <v-col cols="12" md="6" class="columna-1 pr-md-10 pb-0">
-          <h2 class="mb-10">Login</h2>
-          <v-form ref="form" @submit.prevent="login">
-            <v-text-field
-              label="Correo"
-              :rules="[(v) => !!v || 'Este campo es obligatorio']"
-              background-color="#ebe9e9"
-              color="#262626"
-              rounded
-              v-model="$store.state.formLabelAlign.email"
-            ></v-text-field>
-
-            <v-text-field
-              label="Contraseña"
-              :counter="10"
-              :rules="[(v) => !!v || 'Este campo es obligatorio']"
-              background-color="#ebe9e9"
-              color="#262626"
-              rounded
-              v-model="$store.state.formLabelAlign.password"
-            ></v-text-field>
-
+          <h2 class="mb-10">!Hola {{this.$store.state.user.displayName}}!</h2>
+          <h5 class="mb-4">Te haz logueado con éxito</h5>
+          <p class="mb-10">Ahora puede acceder al carrito de compras</p>
+          <div class="pr-16 mt-16">
             <v-btn
               color="#D9AF3A"
-              class="mr-4 mb-3"
-              type="submit"
-              block
+              class="px-16 mt-16"
               rounded
               dark
+              @click="logout"
             >
-              INGRESAR
-            </v-btn>
-          </v-form>
-
-          <router-link to="" style="text-decoration: none;">
-            <p class="text-center mt-6 olvida-contraseña">
-              ¿Olvidaste la contraseña?
-            </p>
-          </router-link>
-          <hr class="mx-auto" />
-          <p class="text-center">¿No estás registrado?</p>
-
-          <v-btn
-            color="#D9AF3A"
-            class="mr-4 mb-3 btn-registro"
-            block
-            rounded
-            outlined
-          >
-            REGISTRARSE
-          </v-btn>
+              Cerrar Sesión
+            </v-btn> <br> <br>
+            <span class="mt-4 pl-14">!Vuelve pronto!</span>
+          </div>
         </v-col>
         <v-col cols="12" md="6" class="columna-2 pr-0 pb-0">
           <div class="background-image text-center">
@@ -72,28 +37,20 @@
 
 <script>
 import Footer from '../components/Footer'
-import Firebase from "firebase"
 import Administracion from '../views/Administracion.vue'
+import Firebase from 'firebase';
+
 export default {
   name: "Login",
   components: { Footer, Administracion },
   methods: {
-    login() {
-      Firebase.auth()
-        .signInWithEmailAndPassword(
-          this.$store.state.formLabelAlign.email,
-          this.$store.state.formLabelAlign.password
-        )
-        .then(
-          (accept) => {
-            this.$router.push("/");
-          },
-          (reject) => {
-            console.log('error de conexion');
-
-          }
-        )
+    logout() {
+      Firebase.auth().signOut()
+        .then(accept => {
+          this.$router.push('/');
+        });
     }
+
   }
 }
 </script>
@@ -139,23 +96,12 @@ h2 {
   color: #4f3701;
   padding-top: 4rem;
 }
-.olvida-contraseña {
-  color: #d9af3a;
-  transition: all 0.3s ease;
-}
-.olvida-contraseña:hover {
-  color: #f1d68b;
-}
 .v-btn {
+  text-transform: capitalize;
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
 }
-.v-text-field {
-  font-family: "Montserrat", sans-serif;
-}
-.btn-registro:hover {
-  text-decoration: none;
-}
+
 h1 {
   color: #262626;
   font-family: "Yesteryear", cursive;

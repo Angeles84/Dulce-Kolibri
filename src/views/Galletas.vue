@@ -27,7 +27,7 @@ import Sugerencias from '../components/Sugerencias'
 import Store from '@/store'
 
 export default {
-  name: 'Tortas',
+  name: 'Galletas',
   components: { Footer, Sugerencias },
   data: () => ({
     vertical: true,

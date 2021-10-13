@@ -1,12 +1,19 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Firebase from 'firebase'
+import Swl from 'sweetalert2'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
+    name: 'Inicio',
+    component: Home
+  },
+  {
+    path: '/inicio',
     name: 'Inicio',
     component: Home
   },
@@ -43,7 +50,10 @@ const routes = [
   {
     path: '/carrito',
     name: 'Carrito',
-    component: () => import('../views/Carrito.vue')
+    component: () => import('../views/Carrito.vue'),
+    meta: {
+      login: true
+    }
   },
   {
     path: '/login',
@@ -71,16 +81,17 @@ const router = new VueRouter({
 
 })
 
-// router.beforeEach((to, from, next) => {
-//   let user = Firebase.auth().currentUser;
-//   let authRequired = to.matched.some(route => route.meta.login);
-//   if (!user && authRequired) {
-//     next('login');
-//   } else if (user && !authRequired) {
-//     next('home');
-//   }else {
-//     next();
-//   }
-// });
+router.beforeEach((to, from, next) => {
+  let user = Firebase.auth().currentUser;
+  let authRequired = to.matched.some(route => route.meta.login);
+  if (!user && authRequired) {
+    next('/inicio')
+    Swl.fire('Debes ingresar para poder ir al carrito')
+  } else if (user && !authRequired) {
+    next();
+  }else {
+    next();
+  }
+});
 
 export default router
