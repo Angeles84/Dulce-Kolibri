@@ -58,7 +58,7 @@
         <template v-slot:activator="{ on, attrs }">
         <v-btn icon v-bind="attrs" v-on="on" :to="{name: 'Carrito'}" class="ml-16">
           <v-icon color="#4F3701" >mdi-cart-outline</v-icon>
-          <span class="pb-4">{{$store.state.productos.length}}</span>
+          <span class="pb-4">{{$store.state.productos.length === 0 ? '' : $store.state.productos.length}}</span>
         </v-btn>
         </template>
         <span class="text-white">Carrito</span>
@@ -89,7 +89,7 @@
     <v-dialog
         v-model="dialog"
         transition="dialog-top-transition"
-        max-width="450"
+        max-width="470"
       >  
         <template v-slot:default="dialog">
           <v-card>
@@ -98,8 +98,9 @@
               color="#4f3701"
               dark
             >LOGIN</v-toolbar>
-            <v-card-text>
-              <p class="pt-8 mb-0 text-center">Ingresa de manera fácil y rápida con Google</p>
+            <v-card-text class="pt-9 text-center">
+              <span class="mb-0 google-texto">Ingresa de manera fácil y rápida con</span>
+              <img src="@/assets/google.png" alt="" class="pl-1 pb-1 google-img"><span class="google-texto">oogle</span>
             </v-card-text>
             <div class="text-center px-11 my-3">
               <v-btn
@@ -214,10 +215,13 @@ span {
   color: #4f3701;
   font-size: .9rem;
 }
-p {
+.google-texto {
   font-family: 'Montserrat', sans-serif;
   font-size: 1rem;
   color: #212121;
+}
+.google-img {
+  width: 2rem;
 }
 .dialog-title {
   font-family: 'Montserrat', sans-serif;

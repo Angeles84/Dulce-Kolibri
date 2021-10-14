@@ -88,20 +88,13 @@ export default new Vuex.Store({
   },
   actions: {
     agregarAlCarrito({ state, commit }, { index }) {
-      // const productoEncarritoDecompras = state.productos.findIndex(
-      //   (productoCarrito) =>{
-      //   return productoCarrito.index === productos.index
-      //   }
-      // )
       commit('ADD_PRODUCTO_AL_CARRITO', { ...index, qty: 1 })
       Swl.fire({title: `${ index.nombre} - Producto agregado con exito!`,
-      imageUrl: `${ index.imagen}`,
-      imageWidth: 200,
-      imageHeight: 100,
-      imageAlt: 'Custom image',
-})
-      // alert(`${index.nombre} - Producto agregado con exito!`);
-      // console.log("este es", [state.productos]);
+        imageUrl: `${ index.imagen}`,
+        imageWidth: 150,
+        imageHeight: 100,
+        imageAlt: 'Custom image',
+      })
     },
 
     agregarDetalle({ state, commit }, { i }) {
