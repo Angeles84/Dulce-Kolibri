@@ -127,6 +127,7 @@
 import { mapMutations } from "vuex";
 import Firebase from 'firebase'
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import Swal from 'sweetalert2'
 
 export default {
   name: 'AppBar',
@@ -171,6 +172,10 @@ export default {
       Firebase.auth().signOut()
         .then(accept => {
           this.$router.push('/inicio');
+          Swal.fire({
+            icon: 'success',
+            title: 'Has cerrado tu sesión con éxito',
+          })
         });
     }
   },
