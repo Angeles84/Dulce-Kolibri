@@ -3,7 +3,7 @@
     <v-container fluid class="px-0 m-0 pb-16">
       <v-row class="p-0 m-0">
         <v-col cols="12" md="6" class="columna-1 pr-md-10 pb-0">
-          <h2 class="mb-16">!Hola {{this.$store.state.user.displayName}}!</h2>
+          <h2 class="mb-16">!Hola {{$store.state.user.displayName}}!</h2>
           <h5 class="mb-4">Te haz logueado con éxito</h5>
           <p class="mb-10">Ahora puedes acceder al carrito de compras</p>
           <div class="pr-16 mt-16">
