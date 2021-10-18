@@ -90,7 +90,7 @@ export default new Vuex.Store({
     agregarAlCarrito({ state, commit }, { index }) {
       commit('ADD_PRODUCTO_AL_CARRITO', { ...index, qty: 1 })
       Swal.fire({
-        title: `${index.nombre}`, 
+        title: `${ index.nombre}`,
         text: '¡Producto agregado con exito!',
         imageUrl: `${ index.imagen}`,
         imageWidth: 150,

@@ -89,7 +89,7 @@ router.beforeEach((to, from, next) => {
     Swal.fire({
       icon: 'error',
       title: 'Debes ingresar para poder ir al carrito',
-      width: 600,
+      width: 600
     })
   } else if (user && !authRequired) {
     next();
