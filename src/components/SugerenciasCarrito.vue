@@ -37,7 +37,6 @@
 export default {
   methods: {
     agregarAlCarrito( item, index){
-      console.log('// Item ///', index);
       this.$store.dispatch('agregarAlCarrito', {item, index})
     },
   }

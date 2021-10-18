@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Firebase from 'firebase'
-import Swl from 'sweetalert2'
+import Swal from 'sweetalert2'
 
 Vue.use(VueRouter)
 
@@ -86,7 +86,11 @@ router.beforeEach((to, from, next) => {
   let authRequired = to.matched.some(route => route.meta.login);
   if (!user && authRequired) {
     next('/inicio')
-    Swl.fire('Debes ingresar para poder ir al carrito')
+    Swal.fire({
+      icon: 'error',
+      title: 'Debes ingresar para poder ir al carrito',
+      width: 600
+    })
   } else if (user && !authRequired) {
     next();
   }else {

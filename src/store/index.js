@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Firebase from 'firebase'
 import 'firebase/firestore'
-import Swl from 'sweetalert2'
+import Swal from 'sweetalert2'
 
 Vue.use(Vuex)
 
@@ -89,7 +89,9 @@ export default new Vuex.Store({
   actions: {
     agregarAlCarrito({ state, commit }, { index }) {
       commit('ADD_PRODUCTO_AL_CARRITO', { ...index, qty: 1 })
-      Swl.fire({title: `${ index.nombre} - Producto agregado con exito!`,
+      Swal.fire({
+        title: `${ index.nombre}`,
+        text: '¡Producto agregado con exito!',
         imageUrl: `${ index.imagen}`,
         imageWidth: 150,
         imageHeight: 100,
