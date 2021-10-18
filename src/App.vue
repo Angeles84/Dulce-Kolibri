@@ -6,34 +6,27 @@
     <transition name="vista" mode="out-in">
       <router-view></router-view>
     </transition>
-    <Footer />
   </v-app>
 </template>
 
 <script>
 import AppBar from './components/AppBar'
 import Drawer from './components/Drawer'
-import Footer from './components/Footer'
 
-import { mapMutations, mapState } from "vuex";
+import { mapMutations } from "vuex";
 
 export default {
   name: 'App',
   components: {
     AppBar,
-    Drawer,
-    Footer
+    Drawer
   },
 
   data: () => ({
-      items: [
-        { title: 'Tortas' },
-        { title: 'Postres' },
-        { title: 'Galletas' },
-      ],
+      
     }),
   computed: {
-    ...mapState(["links"]),
+  
   },
   methods: {
     ...mapMutations({
@@ -42,6 +35,12 @@ export default {
   },
 };
 </script>
+
+<style>
+html {
+  scroll-behavior: smooth;
+}
+</style>
 
 <style scoped>
 .vista-enter-active, .vista-leave-active {

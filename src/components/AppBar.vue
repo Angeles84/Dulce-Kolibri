@@ -1,12 +1,14 @@
 <template>
-  <v-app-bar
+  <div>
+    <v-app-bar
       app
       color="white"
       class="px-5"
       height="82px"
     >
+    <router-link :to="{name: 'Inicio'}">
       <img src="@/assets/logo-menu.png" alt="">
-
+    </router-link>
       <v-spacer></v-spacer>
       <v-toolbar-items v-if="$vuetify.breakpoint.mdAndUp" class="shrink">
         <v-btn exact color="#4F3701" plain :to="{name: 'Inicio'}"
@@ -20,7 +22,7 @@
         </v-btn>
 
        <v-menu offset-y open-on-hover>
-      <template v-slot:activator="{ on, attrs }">
+        <template v-slot:activator="{ on, attrs }">
         <v-btn
           exact color="#4F3701" plain :to="{name: 'Productos'}"
           v-bind="attrs"
@@ -31,7 +33,7 @@
             right
             dark
           >
-            mdi-menu-down
+            mdi-chevron-down
       </v-icon>
         </v-btn>
       </template>
@@ -46,55 +48,148 @@
         </v-list-item>
       </v-list>
     </v-menu>
-
-        <v-btn exact color="#4F3701" plain :to="{name: 'Contacto'}"
+      
+        <v-btn exact color="#4F3701" plain href="#footer" class="mr-8"
         >
           Contacto
         </v-btn>
       
-        <v-btn icon class="ml-16">
-          <v-icon color="#4F3701">mdi-magnify</v-icon>
+        <v-tooltip bottom>
+        <template v-slot:activator="{ on, attrs }">
+        <v-btn icon v-bind="attrs" v-on="on" :to="{name: 'Carrito'}" class="ml-16">
+          <v-icon color="#4F3701" >mdi-cart-outline</v-icon>
+          <span class="pb-4">{{$store.state.productos.length === 0 ? '' : $store.state.productos.length}}</span>
         </v-btn>
-
-        <v-btn icon>
-          <v-icon color="#4F3701">mdi-cart-outline</v-icon>
-        </v-btn>
-      
-        <v-btn icon >
+        </template>
+        <span class="text-white">Carrito</span>
+        </v-tooltip>
+       
+        <v-tooltip bottom>
+        <template v-slot:activator="{ on, attrs }">
+        <v-btn v-bind="attrs" v-on="on" icon @click="openModal">
           <v-icon color="#4F3701">mdi-account-outline</v-icon>
         </v-btn>
+        </template>
+        <span class="text-white">Ingresa</span>
+        </v-tooltip>
+
+        <v-tooltip bottom>
+        <template v-slot:activator="{ on, attrs }">
+        <v-btn v-bind="attrs" v-on="on" icon @click="logout">
+          <v-icon color="#4F3701">mdi-logout</v-icon>
+        </v-btn>
+        </template>
+        <span class="text-white">Cerrar sesión</span>
+        </v-tooltip>
       </v-toolbar-items>
 
       <v-app-bar-nav-icon v-else @click="setDrawer(true)" />
     </v-app-bar>
+
+    <v-dialog
+        v-model="dialog"
+        transition="dialog-top-transition"
+        max-width="470"
+      >  
+        <template v-slot:default="dialog">
+          <v-card>
+            <v-toolbar
+              class="dialog-title"
+              color="#4f3701"
+              dark
+            >LOGIN</v-toolbar>
+            <v-card-text class="pt-9 text-center">
+              <span class="mb-0 google-texto">Ingresa de manera fácil y rápida con</span>
+              <img src="@/assets/google.png" alt="" class="pl-1 pb-1 google-img"><span class="google-texto">oogle</span>
+            </v-card-text>
+            <div class="text-center px-11 my-3">
+              <v-btn
+               color="primary"
+               block
+               @click="loginGoogle"
+              >
+              Ingreso con Google
+            </v-btn>
+            </div>
+            <v-card-actions class="justify-end">
+              <v-btn
+                text
+                @click="dialog.value = false"
+              >Cerrar</v-btn>
+            </v-card-actions>
+          </v-card>
+        </template>
+      </v-dialog>
+  </div>
 </template>
 
 <script>
-import { mapMutations, mapState } from "vuex";
+import { mapMutations } from "vuex";
+import Firebase from 'firebase'
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 export default {
   name: 'App',
-
   data: () => ({
       items: [
         { title: 'Tortas' },
-        { title: 'Postres' },
         { title: 'Galletas' },
+        { title: 'Postres' },
       ],
+      dialog: false,
     }),
   computed: {
-    ...mapState(["links"]),
+ 
   },
   methods: {
     ...mapMutations({
       setDrawer: "SET_DRAWER",
     }),
+    openModal() {
+      this.dialog = true
+    },
+    loginGoogle() {
+        const provider = new Firebase.auth.GoogleAuthProvider()
+        Firebase.auth().signInWithPopup(provider)
+        .then(
+          accept => {
+            this.$router.push('login');
+            this.dialog = false;
+            var token = accept.credential.accessToken;
+            this.$store.state.user = accept.user;
+            console.log('Login con Google')
+            console.log(this.$store.state.user.displayName);
+          },
+          reject => {       
+            console.log('Ingreso fallido', accept);
+          });
+    },
+    logout() {
+      Firebase.auth().signOut()
+        .then(accept => {
+          this.$router.push('/inicio');
+        });
+    }
+    /*
+    loginGoogle() {
+        const auth = Firebase.auth();
+        const provider = new Firebase.auth.GoogleAuthProvider()
+        auth.signInWithPopup(provider)
+        .then(
+          accept => {
+            console.log('Logueado con éxito', accept);
+            this.$router.push('login');
+            this.dialog = false;
+          },
+          reject => {       
+            console.log('Ingreso fallido', accept);
+          });
+    }*/
   },
 };
 </script>
 
 <style scoped>
-
 img {
   width: 11rem;
 }
@@ -106,9 +201,30 @@ img {
 .v-btn:hover {
   text-decoration: none;
 }
+.v-list-item {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+}
 .v-list-item:hover {
   text-decoration: none;
   color: #4F3701;
   opacity: 0.7;
+}
+span {
+  font-family: 'Montserrat', sans-serif;
+  color: #4f3701;
+  font-size: .9rem;
+}
+.google-texto {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  color: #212121;
+}
+.google-img {
+  width: 2rem;
+}
+.dialog-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
 }
 </style>

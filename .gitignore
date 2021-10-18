@@ -1,10 +1,13 @@
 .DS_Store
 node_modules
 /dist
+/config
+
 
 /tests/e2e/videos/
 /tests/e2e/screenshots/
 
+.env
 
 # local env files
 .env.local
@@ -24,3 +27,5 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+package-lock.json

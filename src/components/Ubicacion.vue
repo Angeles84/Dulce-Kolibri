@@ -1,7 +1,7 @@
 <template>
 <div class="background-color"> 
   <v-container>
-    <v-row class="mt-3 mb-5 px-2">
+    <v-row class="mt-3 mb-6 px-2">
       <v-col cols="12" md="6" class="pl-3 px-md-0">
         <div class="styleInfo pt-10">
           <h2 class="mb-12">Ubicación</h2>

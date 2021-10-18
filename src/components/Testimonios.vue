@@ -48,19 +48,16 @@ export default {
   data: () => ({
      items: [
         {
-          color: '#1F7087',
           title: 'Claudia',
           fecha: '03/09/2021',
           testimonio: '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo  sed do eiusmod tempor incididunt ut labo et dolore magna aliqua. Ut enim ad minim."'
         },
         {
-          color: '#1F7087',
           title: 'Andrés',
           fecha: '10/09/2021',
           testimonio: '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo  sed do eiusmod tempor incididunt ut labo et dolore magna aliqua. Ut enim ad minim."'
         },
         {
-          color: '#1F7087',
           title: 'Belén',
           fecha: '25/09/2021',
           testimonio: '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo  sed do eiusmod tempor incididunt ut labo et dolore magna aliqua. Ut enim ad minim."'
