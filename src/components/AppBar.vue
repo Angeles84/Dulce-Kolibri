@@ -129,7 +129,7 @@ import Firebase from 'firebase'
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 export default {
-  name: 'App',
+  name: 'AppBar',
   data: () => ({
       items: [
         { title: 'Tortas' },
@@ -145,9 +145,11 @@ export default {
     ...mapMutations({
       setDrawer: "SET_DRAWER",
     }),
+
     openModal() {
       this.dialog = true
     },
+
     loginGoogle() {
         const provider = new Firebase.auth.GoogleAuthProvider()
         Firebase.auth().signInWithPopup(provider)
@@ -164,27 +166,13 @@ export default {
             console.log('Ingreso fallido', accept);
           });
     },
+
     logout() {
       Firebase.auth().signOut()
         .then(accept => {
           this.$router.push('/inicio');
         });
     }
-    /*
-    loginGoogle() {
-        const auth = Firebase.auth();
-        const provider = new Firebase.auth.GoogleAuthProvider()
-        auth.signInWithPopup(provider)
-        .then(
-          accept => {
-            console.log('Logueado con éxito', accept);
-            this.$router.push('login');
-            this.dialog = false;
-          },
-          reject => {       
-            console.log('Ingreso fallido', accept);
-          });
-    }*/
   },
 };
 </script>

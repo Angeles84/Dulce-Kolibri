@@ -43,6 +43,7 @@ import Firebase from 'firebase';
 export default {
   name: "Login",
   components: { Footer, Administracion },
+
   methods: {
     logout() {
       Firebase.auth().signOut()
@@ -50,7 +51,6 @@ export default {
           this.$router.push('/');
         });
     }
-
   }
 }
 </script>
