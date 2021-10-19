@@ -6,7 +6,6 @@
     <Destacados />
     <Testimonios />
     <Ubicacion />
-    <Footer />
 
   </div>
 </template>
@@ -18,7 +17,6 @@
   import Destacados from '../components/Destacados'
   import Testimonios from '../components/Testimonios'
   import Ubicacion from '../components/Ubicacion'
-  import Footer from '../components/Footer'
   import Store from '@/store'
 
   export default {
@@ -31,7 +29,6 @@
       Destacados,
       Testimonios,
       Ubicacion,
-      Footer
     },
 
     async beforeRouteEnter(to, from, next) {

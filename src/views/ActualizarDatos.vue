@@ -101,16 +101,14 @@
       </div>
     </v-container>
     </v-form> 
-    <Footer />
   </div>
 </template>
 
 <script>
-import Footer from '../components/Footer'
 
 export default {
   name: "Registro",
-  components: { Footer },
+  components: {  },
 
   data: () => ({
     

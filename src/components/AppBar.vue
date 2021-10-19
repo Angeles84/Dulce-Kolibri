@@ -159,7 +159,7 @@ export default {
             this.$router.push('login');
             this.dialog = false;
             var token = accept.credential.accessToken;
-            this.$store.state.user = accept.user;
+            this.$store.dispatch('getUser', accept.user)
             console.log('Login con Google')
             console.log(this.$store.state.user.displayName);
           },

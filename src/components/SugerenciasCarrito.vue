@@ -33,7 +33,6 @@
 
 <script>
 
-
 export default {
   methods: {
     agregarAlCarrito( item, index){

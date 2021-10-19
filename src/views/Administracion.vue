@@ -1,5 +1,5 @@
 <template>
-    <h1 class="mt-12">Administracion</h1>
+    <h1 class="mt-12">Administración</h1>
 </template>
 <script>
 export default {

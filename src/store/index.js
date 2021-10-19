@@ -84,6 +84,9 @@ export default new Vuex.Store({
     },
     SUB_QTY_TO_SHOPPINGCART_ITEM(state, productIndex) {
       state.productos[productIndex].qty--
+    },
+    SET_USER(state, newUser) {
+      state.user = newUser
     }
   },
   actions: {
@@ -98,14 +101,12 @@ export default new Vuex.Store({
         imageAlt: 'Custom image',
       })
     },
-
     agregarDetalle({ state, commit }, { i }) {
       commit('ADD_PRODUCTO_AL_DETALLE', i)
       console.log('productoPasadooo', [{ i }])
       alert(`${i.nombre} - Producto agregado con exito!`)
       console.log('detalle', [state.detalles])
     },
-
     getTortas(context) {
       Firebase.firestore()
         .collection('tortas')
@@ -155,6 +156,11 @@ export default new Vuex.Store({
           querySnapshot.forEach(doc => data.push({ id: doc.id, ...doc.data() }))
           context.commit('GET_DESTACADOS', data)
         })
+    },
+    getUser(context, accept) {
+      console.log(accept)
+      context.commit('SET_USER', accept)
+      
     },
     agregarCantidadAlProductoDelCarritoDeCompras(context, indexProduct) {
       console.log(indexProduct)

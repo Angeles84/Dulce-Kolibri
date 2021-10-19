@@ -2,16 +2,18 @@
   <v-app>
     <AppBar />
     <Drawer />
-
+    
     <transition name="vista" mode="out-in">
       <router-view></router-view>
     </transition>
+    <Footer />
   </v-app>
 </template>
 
 <script>
 import AppBar from './components/AppBar'
 import Drawer from './components/Drawer'
+import Footer from '@/components/Footer'
 
 import { mapMutations } from "vuex";
 
@@ -19,7 +21,8 @@ export default {
   name: 'App',
   components: {
     AppBar,
-    Drawer
+    Drawer,
+    Footer
   },
 
   data: () => ({

@@ -173,11 +173,9 @@
         <!--Col sugerencias-->
       </v-row>
     </v-container>
-    <Footer />
   </div>
 </template>
 <script>
-import Footer from '../components/Footer'
 import SugCarrito from '../components/SugerenciasCarrito'
 import CryptoJS from 'crypto-js'
 import axios from 'axios'
@@ -186,7 +184,7 @@ import querystring from 'query-string'
 
 export default {
   name: 'Carrito',
-  components: { Footer, SugCarrito },
+  components: { SugCarrito },
   data: () => ({
     signature: ''
   }),

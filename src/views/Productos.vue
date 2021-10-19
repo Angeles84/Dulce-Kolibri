@@ -50,17 +50,15 @@
         </v-col> 
       </v-row>
     </v-container>
-    <Footer />
   </div>
 </template>
 
 <script >
-import Footer from '../components/Footer'
 import Store from '@/store'
 
 export default {
   name: 'Productos',
-  components: { Footer },
+  components: {  },
   data: () => ({
     
   }),

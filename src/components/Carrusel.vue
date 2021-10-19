@@ -41,7 +41,7 @@
 </template>
 
 <script>
-  //font-family: 'Yesteryear', cursive;
+
   export default {
     
   }

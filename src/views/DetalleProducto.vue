@@ -83,19 +83,17 @@
       </v-row>
     </v-container> 
     <Destacados />
-    <Footer />
   </div>
 </template>
 
 <script>
 import Destacados from '../components/Destacados'
-import Footer from '../components/Footer'
 import Store from '@/store'
 import Firebase from 'firebase'
 
 export default {
   name: 'DetalleProducto',
-  components: { Footer, Destacados },
+  components: { Destacados },
   
   data: () => ({
     producto: null,
