@@ -61,9 +61,15 @@ const routes = [
     component: () => import('../views/Login.vue')
   },
   {
-    path: '/actualizar',
-    name: 'ActualizarDatos',
-    component: () => import('../views/ActualizarDatos.vue')
+    path: '/administracion',
+    name: 'Administracion',
+    component: () => import('../views/Administracion.vue'),
+    
+  },
+  {
+    path: '/editar/:id',
+    name: 'Editar',
+    component: () => import('../views/Editar.vue')
   },
   {
     path: '/detalle/:category/:id',

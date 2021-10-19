@@ -24,11 +24,21 @@ export default new Vuex.Store({
     galletas: [],
     sugerencias: [],
     destacados: [],
-    producto: {
+  
+    torta: {
       nombre: '',
       imagen: '',
       personas: '',
       descripcion: '',
+      descuento: '',
+      precio: 0
+    },
+    postre: {
+      nombre: '',
+      imagen: '',
+      personas: '',
+      descripcion: '',
+      descuento: '',
       precio: 0
     }
   },
@@ -87,7 +97,20 @@ export default new Vuex.Store({
     },
     SET_USER(state, newUser) {
       state.user = newUser
-    }
+    },
+    //Para editar tortas
+    UNSET_TORTA(state) {
+      state.torta = null
+    },
+    SET_TORTA(state, newTorta) {
+      state.torta = newTorta
+    },
+    UNSET_POSTRE(state) {
+      state.postre = null
+    },
+    SET_POSTRE(state, newTorta) {
+      state.postre = newTorta
+    },
   },
   actions: {
     agregarAlCarrito({ state, commit }, { index }) {
@@ -166,10 +189,90 @@ export default new Vuex.Store({
       console.log(indexProduct)
       context.commit('ADD_QTY_TO_SHOPPINGCART_ITEM', indexProduct)
     },
-
     restarCantidadAlProductoDelCarritoDeCompras(context, indexProduct) {
       context.commit('SUB_QTY_TO_SHOPPINGCART_ITEM', indexProduct)
-    }
+    },
+    //Para editar tortas
+    getTorta(context, id) {
+      context.commit('UNSET_TORTA')
+      return new Promise((resolve, reject) => {
+        Firebase.firestore()
+          .collection('tortas')
+          .doc(id)
+          .get()
+          .then((doc) => {
+            context.commit('SET_TORTA', { id: doc.id, ...doc.data() })
+            resolve()
+          }, reject)
+      })
+    },
+    borrarTorta(context,torta) {
+      Firebase.firestore()
+        .collection('tortas')
+        .doc(torta.id)
+        .delete()
+        .then(() => {
+          context.dispatch('getTortas')
+        })
+    },
+    crearTorta(context, nuevaTorta) {
+      return new Promise((resolve, reject) => {
+        Firebase.firestore().collection('tortas').add(nuevaTorta).then(resolve, reject)
+      })
+    },
+    actualizarTorta(context, torta) {
+      return new Promise((resolve, reject) => {
+        Firebase.firestore()
+          .collection('tortas')
+          .doc(context.state.torta.id)
+          .update(torta)
+          .then(() => {
+            context.dispatch('getTortas')
+            resolve()
+          }, reject)
+      })
+    },
+
+    //Para editar postres
+    getPostre(context, id) {
+      context.commit('UNSET_POSTRE')
+      return new Promise((resolve, reject) => {
+        Firebase.firestore()
+          .collection('postres')
+          .doc(id)
+          .get()
+          .then((doc) => {
+            context.commit('SET_POSTRE', { id: doc.id, ...doc.data() })
+            resolve()
+          }, reject)
+      })
+    },
+    borrarPostre(context,torta) {
+      Firebase.firestore()
+        .collection('postres')
+        .doc(torta.id)
+        .delete()
+        .then(() => {
+          context.dispatch('getPostres')
+        })
+    },
+    crearPostre(context, nuevaTorta) {
+      return new Promise((resolve, reject) => {
+        Firebase.firestore().collection('postres').add(nuevaTorta).then(resolve, reject)
+      })
+    },
+    actualizarPostre(context, torta) {
+      return new Promise((resolve, reject) => {
+        Firebase.firestore()
+          .collection('tpostres')
+          .doc(context.state.torta.id)
+          .update(torta)
+          .then(() => {
+            context.dispatch('getPostres')
+            resolve()
+          }, reject)
+      })
+    },
   },
   modules: {}
 })
