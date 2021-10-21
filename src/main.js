@@ -10,6 +10,8 @@ Vue.config.productionTip = false
 
 Firebase.initializeApp(FirebaseConfig)
 
+store.dispatch('getRoles');
+
 new Vue({
   router,
   store,

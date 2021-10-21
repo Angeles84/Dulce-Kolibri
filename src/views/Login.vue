@@ -4,7 +4,7 @@
       <v-row class="p-0 m-0">
         <v-col cols="12" md="6" class="columna-1 pr-md-10 pb-0">
           <h2 class="mt-16 mb-16">!Hola {{$store.state.user.displayName}}!</h2>
-          <h5 class="mb-4">Te haz logueado con éxito</h5>
+          <h5 class="mb-4">Te has logueado con éxito</h5>
           <p class="mt-8 mb-10 carrito">Ahora puedes acceder al carrito de compras</p>       
         </v-col>
         <v-col cols="12" md="6" class="columna-2 pr-0 pb-0">

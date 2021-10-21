@@ -32,7 +32,7 @@
             <v-card-actions>
 
             <v-btn
-              class="mt-md-2 mt-lg-7 ml-2 px-12 testing"
+              class="testing mt-md-2 mt-lg-7 ml-2 px-12"
               rounded
               small
               dark
@@ -111,9 +111,9 @@ export default {
     next()
   },
   
-  mounted() {
-    console.log(this.$route.params)
-  },
+  //mounted() {
+  //  console.log(this.$route.params)
+  //},
 
   methods: {
     agregarAlCarrito( item, index){

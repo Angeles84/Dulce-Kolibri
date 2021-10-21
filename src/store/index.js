@@ -8,7 +8,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    user: '',
+    user: null,
     drawer: false,
     productos: [],
     detalles: [],
@@ -16,6 +16,14 @@ export default new Vuex.Store({
     formLabelAlign: {
       email: '',
       password: ''
+    },
+    producto: {
+      nombre: '',
+      imagen: '',
+      personas: '',
+      descripcion: '',
+      descuento: '',
+      precio: 0
     },
     links: ['Inicio', 'Nosotros', 'Productos', 'Contacto'],
     data: [],
@@ -40,7 +48,16 @@ export default new Vuex.Store({
       descripcion: '',
       descuento: '',
       precio: 0
-    }
+    },
+    galleta: {
+      nombre: '',
+      imagen: '',
+      personas: '',
+      descripcion: '',
+      descuento: '',
+      precio: 0
+    },
+    roles: []
   },
   getters: {
     valorTotalVenta(state) {
@@ -57,6 +74,16 @@ export default new Vuex.Store({
       return state.productos.reduce((accumulator, producto) => {
         return accumulator + Number.parseInt(producto.precio[index]) * producto.qty
       }, 0)
+    },
+    productos(state){
+      return [
+        ...state.tortas.map(torta => ({...torta, categoria: 'tortas'})),
+        ...state.postres.map(postre => ({...postre, categoria: 'postres'})),
+        ...state.galletas.map(galleta => ({...galleta, categoria: 'galletas'}))
+      ]
+    },
+    esAdmin(state){
+      return state.roles.some(rol => rol.correo === state.user.email)
     }
   },
   mutations: {
@@ -105,12 +132,29 @@ export default new Vuex.Store({
     SET_TORTA(state, newTorta) {
       state.torta = newTorta
     },
+    //Para editar postres
     UNSET_POSTRE(state) {
       state.postre = null
     },
     SET_POSTRE(state, newTorta) {
       state.postre = newTorta
     },
+    //Para editar galletas
+    UNSET_GALLETA(state) {
+      state.galleta = null
+    },
+    SET_GALLETA(state, newTorta) {
+      state.galleta = newTorta
+    },
+    UNSET_PRODUCTO(state) {
+      state.producto = null
+    },
+    SET_PRODUCTO(state, newTorta) {
+      state.producto = newTorta
+    },
+    SET_ROLES(state, newRoles) {
+      state.roles = newRoles
+    }
   },
   actions: {
     agregarAlCarrito({ state, commit }, { index }) {
@@ -192,16 +236,17 @@ export default new Vuex.Store({
     restarCantidadAlProductoDelCarritoDeCompras(context, indexProduct) {
       context.commit('SUB_QTY_TO_SHOPPINGCART_ITEM', indexProduct)
     },
+
     //Para editar tortas
     getTorta(context, id) {
-      context.commit('UNSET_TORTA')
+      context.commit('UNSET_PRODUCTO')
       return new Promise((resolve, reject) => {
         Firebase.firestore()
           .collection('tortas')
           .doc(id)
           .get()
           .then((doc) => {
-            context.commit('SET_TORTA', { id: doc.id, ...doc.data() })
+            context.commit('SET_PRODUCTO', { id: doc.id, ...doc.data() })
             resolve()
           }, reject)
       })
@@ -224,7 +269,7 @@ export default new Vuex.Store({
       return new Promise((resolve, reject) => {
         Firebase.firestore()
           .collection('tortas')
-          .doc(context.state.torta.id)
+          .doc(torta.id)
           .update(torta)
           .then(() => {
             context.dispatch('getTortas')
@@ -233,16 +278,57 @@ export default new Vuex.Store({
       })
     },
 
+    //Para editar galletas
+    getGalleta(context, id) {
+      context.commit('UNSET_PRODUCTO')
+      return new Promise((resolve, reject) => {
+        Firebase.firestore()
+          .collection('galletas')
+          .doc(id)
+          .get()
+          .then((doc) => {
+            context.commit('SET_PRODUCTO', { id: doc.id, ...doc.data() })
+            resolve()
+          }, reject)
+      })
+    },
+    borrarGalleta(context,torta) {
+      Firebase.firestore()
+        .collection('galletas')
+        .doc(torta.id)
+        .delete()
+        .then(() => {
+          context.dispatch('getGalletas')
+        })
+    },
+    crearGalleta(context, nuevaTorta) {
+      return new Promise((resolve, reject) => {
+        Firebase.firestore().collection('galletas').add(nuevaTorta).then(resolve, reject)
+      })
+    },
+    actualizarGalleta(context, galleta) {
+      return new Promise((resolve, reject) => {
+        Firebase.firestore()
+          .collection('galletas')
+          .doc(galleta.id)
+          .update(galleta)
+          .then(() => {
+            context.dispatch('getGalletas')
+            resolve()
+          }, reject)
+      })
+    },
+
     //Para editar postres
     getPostre(context, id) {
-      context.commit('UNSET_POSTRE')
+      context.commit('UNSET_PRODUCTO')
       return new Promise((resolve, reject) => {
         Firebase.firestore()
           .collection('postres')
           .doc(id)
           .get()
           .then((doc) => {
-            context.commit('SET_POSTRE', { id: doc.id, ...doc.data() })
+            context.commit('SET_PRODUCTO', { id: doc.id, ...doc.data() })
             resolve()
           }, reject)
       })
@@ -261,18 +347,28 @@ export default new Vuex.Store({
         Firebase.firestore().collection('postres').add(nuevaTorta).then(resolve, reject)
       })
     },
-    actualizarPostre(context, torta) {
+    actualizarPostre(context, postre) {
       return new Promise((resolve, reject) => {
         Firebase.firestore()
-          .collection('tpostres')
-          .doc(context.state.torta.id)
-          .update(torta)
+          .collection('postres')
+          .doc(postre.id)
+          .update(postre)
           .then(() => {
             context.dispatch('getPostres')
             resolve()
           }, reject)
       })
     },
+    getRoles(context) {
+      Firebase.firestore()
+      .collection('roles')
+      .get() 
+      .then(documents => {
+        let data = []
+        documents.forEach(doc => data.push({ id: doc.id, ...doc.data() }))
+        context.commit('SET_ROLES', data)
+      })
+    }
   },
   modules: {}
 })

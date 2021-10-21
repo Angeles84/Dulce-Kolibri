@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Firebase from 'firebase'
 import Swal from 'sweetalert2'
+import Store from '@/store/index.js'
 
 Vue.use(VueRouter)
 
@@ -64,10 +65,13 @@ const routes = [
     path: '/administracion',
     name: 'Administracion',
     component: () => import('../views/Administracion.vue'),
-    
+    meta: {
+      admin: true,
+      login: true
+    }
   },
   {
-    path: '/editar/:id',
+    path: '/editar/:categoria/:id',
     name: 'Editar',
     component: () => import('../views/Editar.vue')
   },
@@ -99,6 +103,9 @@ router.beforeEach((to, from, next) => {
     })
   } else if (user && !authRequired) {
     next();
+    
+  } else if(to.meta.admin && !Store.getters['esAdmin'] ){
+    next('/inicio')
   }else {
     next();
   }

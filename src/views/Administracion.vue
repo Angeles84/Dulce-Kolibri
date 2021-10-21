@@ -1,37 +1,28 @@
 <template>
   <div class="mt-16 text-center">
-    <h2 class="mt-16">Administración</h2>
+    <h2 class="mt-16 mb-1">Administración</h2>
     <img class="ramita-tortas mb-3" src="@/assets/ramita-tortas.png" alt="">
 
-    <!--Tabla tortas-->
-    <TablaTortas />
-    <!--Tabla Postres-->
-    <TablaPostres />
-    <!--Tabla Galletas-->
-
-    <!--Tabla Destacados-->
-
-    <!--Tabla Sugerencias-->
+    <TablaProductos />
 
   </div>
 </template>
 
 <script>
-import TablaTortas from '@/components/TablaTortas'
-import TablaPostres from '@/components/TablaPostres'
+
+import TablaProductos from '@/components/TablaProductos'
 
 export default {
     name: 'Administracion',
     components: {
-      TablaTortas,
-      TablaPostres
+      TablaProductos
     }
 }
 </script>
 
 <style scoped>
 h2 {
-  margin-top: 4em;
+  margin-top: 3.6em;
   font-family: "Montserrat", sans-serif;
   font-size: 2rem;
   font-weight: bold;

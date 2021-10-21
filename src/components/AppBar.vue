@@ -75,7 +75,7 @@
 
         <v-tooltip bottom>
         <template v-slot:activator="{ on, attrs }">
-        <v-btn v-bind="attrs" v-on="on" icon @click="logout">
+        <v-btn v-show="btnCerrar" v-bind="attrs" v-on="on" icon @click="logout">
           <v-icon color="#4F3701">mdi-logout</v-icon>
         </v-btn>
         </template>
@@ -132,13 +132,14 @@ import Swal from 'sweetalert2'
 export default {
   name: 'AppBar',
   data: () => ({
-      items: [
-        { title: 'Tortas' },
-        { title: 'Galletas' },
-        { title: 'Postres' },
-      ],
-      dialog: false,
-    }),
+    items: [
+      { title: 'Tortas' },
+      { title: 'Galletas' },
+      { title: 'Postres' },
+    ],
+    dialog: false,
+    btnCerrar: false,
+  }),
   computed: {
  
   },
@@ -156,12 +157,12 @@ export default {
         Firebase.auth().signInWithPopup(provider)
         .then(
           accept => {
-            this.$router.push('login');
-            this.dialog = false;
-            var token = accept.credential.accessToken;
             this.$store.dispatch('getUser', accept.user)
+            this.btnCerrar = true;
+            this.dialog = false;
             console.log('Login con Google')
             console.log(this.$store.state.user.displayName);
+            this.$router.push('/login');
           },
           reject => {       
             console.log('Ingreso fallido', accept);
@@ -171,11 +172,12 @@ export default {
     logout() {
       Firebase.auth().signOut()
         .then(accept => {
-          this.$router.push('/inicio');
+          this.btnCerrar = false;
           Swal.fire({
             icon: 'success',
             title: 'Has cerrado tu sesión con éxito',
           })
+          this.$router.push('/inicio');
         });
     }
   },

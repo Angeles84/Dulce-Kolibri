@@ -1,18 +1,18 @@
 <template>
   <div class="editar">
     <v-form
-      :model="torta"
+      :model="producto"
       ref="form"
       @submit.prevent=""
     >
     <v-container class="pb-16 px-4 px-md-0">
-      <h2 v-once>Editando el producto: {{ torta.nombre }}</h2>
+      <h2 v-once>Editando el producto: {{ producto.nombre }}</h2>
       <img class="ramita-tortas mb-5" src="@/assets/ramita-tortas.png" alt="">
       <v-row class="">
         <v-col cols="12" class="pr-md-6 pb-0 px-4">
  
             <v-text-field
-              v-model="torta.nombre"
+              v-model="producto.nombre"
               label="Nombre"
               :rules="[v => !!v || 'Este campo es obligatorio']"
               background-color="#ebe9e9"
@@ -21,7 +21,7 @@
             ></v-text-field>
 
             <v-text-field
-              v-model="torta.imagen"
+              v-model="producto.imagen"
               label="URL de la imagen"
               :rules="[v => !!v || 'Este campo es obligatorio']"
               background-color="#ebe9e9"
@@ -30,7 +30,7 @@
             ></v-text-field>
             
             <v-text-field
-              v-model="torta.personas"
+              v-model="producto.personas"
               label="Cantidad"
               :rules="[v => !!v || 'Este campo es obligatorio']"
               background-color="#ebe9e9"
@@ -39,7 +39,7 @@
             ></v-text-field>
 
             <v-text-field
-              v-model.number="torta.precio"
+              v-model.number="producto.precio"
               label="Precio"
               type="number"
               :rules="[v => !!v || 'Este campo es obligatorio']"
@@ -49,7 +49,7 @@
             ></v-text-field>
 
             <v-text-field
-              v-model="torta.descuento"
+              v-model="producto.descuento"
               label="Descuento"
               background-color="#ebe9e9"
               color="#262626"
@@ -57,7 +57,7 @@
             ></v-text-field>
 
             <v-textarea
-              v-model="torta.descripcion"
+              v-model="producto.descripcion"
               label="Descripción del producto"
               :rules="[v => !!v || 'Este campo es obligatorio']"
               background-color="#ebe9e9"
@@ -72,7 +72,7 @@
           rounded
           dark
           class="mr-4 mb-3"
-          @click="editarTorta"
+          @click="editarTorta()"
           >
           ACTUALIZAR
         </v-btn>
@@ -82,7 +82,7 @@
           rounded
           outlined
           class="mr-4 mb-3"
-          @click="resetForm"
+          @click="resetForm()"
           >
             LIMPIAR FORMULARIO
         </v-btn>   
@@ -92,7 +92,7 @@
           outlined
           rounded
           class="mb-3"
-          @click="resetValidation"
+          @click="resetValidation()"
           >
             LIMPIAR VALIDACIóN
         </v-btn> 
@@ -114,16 +114,28 @@ export default {
     
   }),
   async beforeRouteEnter(to, from, next) {
-    await Store.dispatch('getTorta', to.params.id)
+    if(to.params.categoria === 'tortas') {
+      await Store.dispatch('getTorta', to.params.id)  
+    } else if(to.params.categoria === 'postres') {
+      await Store.dispatch('getPostre', to.params.id)
+    } else {
+      await Store.dispatch('getGalleta', to.params.id)
+    }
     next()
   },
   computed: {
-    ...mapState(['torta'])
+    ...mapState(['producto'])
   },
   methods: {
     async editarTorta() {
       try {
-        await this.$store.dispatch('actualizarTorta', {...this.torta})
+        if(this.$route.params.categoria === 'tortas'){
+          await this.$store.dispatch('actualizarTorta', {...this.producto})
+        } else if(this.$route.params.categoria === 'postres'){
+          await this.$store.dispatch('actualizarPostre', {...this.producto})
+        } else {
+          await this.$store.dispatch('actualizarGalleta', {...this.producto})
+        }
         this.$router.back()
       } catch (e) {
         console.error(e)

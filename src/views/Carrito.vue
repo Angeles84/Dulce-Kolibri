@@ -55,7 +55,7 @@
               ><b>{{ producto.qty }}</b></span
             >
             <button
-              class="btn-mas"
+              class="testing btn-mas"
               @click="$store.dispatch('agregarCantidadAlProductoDelCarritoDeCompras', id)"
             >
               +

@@ -2,14 +2,14 @@
   <div class="text-center">
     <h2 class="mb-1">Postres</h2>
     <img class="ramita-tortas" src="@/assets/ramita-tortas.png" alt="">
-
-    <v-container class="mt-5">
+    
+    <v-container id="div-test" class="mt-5">
       <v-row>
         <v-col cols="12" md="6" lg="4" class="text-center"
           v-for="(postre, i) in $store.state.postres"
           :key="i"
         >
-          <img :src="postre.imagen" alt="" class="img-fluid img-producto testing" @click="irAlDetalle(i, postre)">
+          <img id="testing" :src="postre.imagen" alt="" class="testing img-fluid img-producto" @click="irAlDetalle(i, postre)">
           <h3 class="mt-4 mb-0">{{postre.nombre}}</h3>
           <p class="mb-2">{{postre.personas}}</p>
           <h4 class="mb-5">$ {{postre.precio.toLocaleString("de-DE", {minimumFractionDigits: 0})}}</h4>

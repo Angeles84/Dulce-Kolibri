@@ -1,14 +1,35 @@
-import { shallowMount , mount } from '@vue/test-utils'
-import Postres from '@/views/Postres.vue'
+
+import {  shallowMount, createLocalVue } from '@vue/test-utils'
+import Vuex from 'vuex'
+import Carrito from '@/views/Carrito'
+
+const localVue = createLocalVue()
+
+localVue.use(Vuex)
 
 
-describe( 'Postres' , () => {
-  const wrapper = shallowMount(Postres)
+describe( 'Carrito' , () => {
 
-  test( 'Que se dispare la acción irAlDetalle' , () => {
-    let imgProducto = wrapper.find( 'img.testing' )
+  let actions
+  let store
+
+  beforeEach(() => {
+    actions = {
+      cobrar: jest.fn(),
+    }
+    store = new Vuex.Store({
+      actions
+    })
+  })
+
+  it( 'Que se dispare la acción cobrar al hacer click en el botón' , () => {
+
+    const wrapper = shallowMount(Carrito, { store, localVue })
+
+    let imgProducto = wrapper.find( '.testing' )
+
     imgProducto.trigger('click')
-    let irAlDetalleSpy = jest.spyOn(wrapper , 'irAlDetalle')
-    expect(irAlDetalleSpy).toHaveBeenCalled()
+
+    expect(actions.cobrar).toHaveBeenCalled()
   })
 })

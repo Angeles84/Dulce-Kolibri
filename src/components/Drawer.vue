@@ -23,13 +23,13 @@
       <div class="pl-3">
         <v-btn icon :to="{name: 'Carrito'}">
           <v-icon color="#4F3701" >mdi-cart-outline</v-icon>
-        </v-btn><span class="pb-4"> {{$store.state.productos.length}}</span><br>
+        </v-btn><span class="pb-4"> {{$store.state.productos.length === 0 ? '' : $store.state.productos.length}}</span><br>
       
         <v-btn icon class="mt-4" @click="openModal">
           <v-icon color="#4F3701">mdi-account-outline</v-icon>
         </v-btn><br>
 
-        <v-btn icon class="mt-4" @click="logout">
+        <v-btn v-show="btnCerrar" icon class="mt-4" @click="logout">
           <v-icon color="#4F3701">mdi-logout</v-icon>
         </v-btn>
       </div>
@@ -88,6 +88,7 @@ export default {
       'Postres',
     ],
     dialog: false,
+    btnCerrar: false,
   }),
   computed: {
     drawer: {
@@ -109,6 +110,7 @@ export default {
         .then(
           accept => {
             this.$router.push('login');
+            this.btnCerrar = true;
             this.dialog = false;
             var token = accept.credential.accessToken;
             this.$store.state.user = accept.user;
@@ -123,6 +125,7 @@ export default {
       Firebase.auth().signOut()
         .then(accept => {
           this.$router.push('/inicio');
+          this.btnCerrar = false;
         });
     }
   }

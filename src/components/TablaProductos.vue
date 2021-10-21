@@ -4,7 +4,7 @@
 
     <v-data-table
     :headers="headers"
-    :items="$store.state.postres"
+    :items="$store.getters['productos']"
     class="elevation-1"
   >
     <template v-slot:top>
@@ -12,7 +12,7 @@
         flat
       >
         <v-toolbar-title></v-toolbar-title>
-        <h5>Postres</h5>
+        <h5>Productos</h5>
         <v-spacer></v-spacer>
         <v-dialog
           v-model="dialog"
@@ -27,37 +27,53 @@
               v-bind="attrs"
               v-on="on"
             >
-              AGREGAR POSTRE
+              AGREGAR PRODUCTO
             </v-btn>
           </template>
           <v-card>
             <v-card-title>
-              Agregando postre
+              Agregando producto
             </v-card-title>
 
             <v-card-text>
               <v-container>
-               <v-form ref="form" :model="postre">
+               <v-form ref="form" :model="producto">
                 <v-row>
                   <v-col
                     cols="12" 
                     class="py-0"
                   >
                     <v-text-field
-                      v-model="postre.nombre"
+                      v-model="producto.nombre"
                       label="Nombre"
                       :rules="[v => !!v || 'Este campo es obligatorio']"
                       background-color="#ebe9e9"
                       color="#262626"
                       rounded
                     ></v-text-field>
+
+                  </v-col>
+                   <v-col
+                    cols="12" 
+                    class="py-0"
+                  >
+                    <v-select
+                      v-model="producto.categoria"
+                      label="Categoría"
+                      :rules="[v => !!v || 'Este campo es obligatorio']"
+                      background-color="#ebe9e9"
+                      color="#262626"
+                      rounded
+                      :items="['tortas', 'postres', 'galletas']"
+                    ></v-select>
+                    
                   </v-col>
                    <v-col
                     cols="12" 
                     class="py-0"
                   >
                     <v-text-field
-                      v-model="postre.imagen"
+                      v-model="producto.imagen"
                       label="Url de la imagen de la torta"
                       :rules="[v => !!v || 'Este campo es obligatorio']"
                       background-color="#ebe9e9"
@@ -70,7 +86,7 @@
                     class="py-0"
                   >
                     <v-text-field
-                      v-model="postre.personas"
+                      v-model="producto.personas"
                       label="Cantidad"
                       :rules="[v => !!v || 'Este campo es obligatorio']"
                       background-color="#ebe9e9"
@@ -83,7 +99,7 @@
                     class="py-0"
                   >
                     <v-text-field
-                      v-model.number="postre.precio"
+                      v-model.number="producto.precio"
                       label="Precio"
                       type="number"
                       :rules="[v => !!v || 'Este campo es obligatorio']"
@@ -97,7 +113,7 @@
                     class="py-0"
                   >
                     <v-text-field
-                      v-model="postre.descuento"
+                      v-model="producto.descuento"
                       label="Descuento"
                       background-color="#ebe9e9"
                       color="#262626"
@@ -109,7 +125,7 @@
                     class="py-0"
                   >
                     <v-textarea
-                      v-model="postre.descripcion"
+                      v-model="producto.descripcion"
                       label="Descripción de la torta"
                       :rules="[v => !!v || 'Este campo es obligatorio']"
                       background-color="#ebe9e9"
@@ -130,7 +146,7 @@
                   rounded
                   dark
                   class="mr-4 mb-3"
-                  @click="addPostre"
+                  @click="addTorta"
                 >
                  AGREGAR
                 </v-btn>
@@ -168,9 +184,7 @@
         color="#4f3701"
         dark
       >
-        <span>${{ item.precio.toLocaleString('de-DE', {
-                minimumFractionDigits: 0
-              }) }}</span>
+        <span>${{ item.precio.toLocaleString() }}</span>
       </v-chip>
     </template>
 
@@ -179,7 +193,7 @@
         color="#D9AF3A"
         small
         class="mr-2"
-        @click="$router.push(`/editar/${item.id}`)"
+        @click="$router.push(`/editar/${item.categoria}/${item.id}`)"
       >
         mdi-pencil
       </v-icon>
@@ -208,15 +222,14 @@
 
 <script>
 import Firebase from 'firebase';
-import { mapState, mapMutations, createLogger } from 'vuex';
+import { mapState, mapGetters, mapMutations, createLogger } from 'vuex';
 
 export default {
-  name: 'TablaPostres',
+  name: 'TablaTortas',
 
   data: () => ({
     dialog: false,
     dialogDelete: false,
-    dialogBorrar: false,
     headers: [
       {
         text: 'Nombre',
@@ -228,10 +241,11 @@ export default {
       { text: 'Precio', value: 'precio' },
       { text: 'Descuento', value: 'descuento' },
       { text: 'Acciones', value: 'actions', sortable: false },
-    ]
+    ],
+    producto: {}
   }),
   computed: {
-    ...mapState([ 'postre']),
+    ...mapGetters([ 'productos']),
   }, 
   watch: {
     dialog (val) {
@@ -246,12 +260,21 @@ export default {
   },
   methods: {
     cargaTabla() {
+      this.$store.dispatch("getTortas");
       this.$store.dispatch("getPostres");
+      this.$store.dispatch("getGalletas");
     },
     //eliminar curso
-    borrarItem(item) {
-      prompt('Desea borrar esta postre?')
-      this.$store.dispatch('borrarPostre', item)
+    borrarItem(item) { 
+      prompt('Desea borrar esta torta?')
+      if(item.categoria === 'tortas') {
+        this.$store.dispatch('borrarTorta', item)
+      } else if(item.categoria === 'postres') {
+        this.$store.dispatch('borrarPostre', item)
+      }else {
+        this.$store.dispatch('borrarGalleta', item)
+      }
+      
     },
     close () {
       this.dialog = false
@@ -261,13 +284,28 @@ export default {
       })
     },
 
-    async addPostre() {
+    async addTorta() {
+      console.log('hola mundo')
       try {
-        const response = await this.$store.dispatch('crearPostre', {...this.postre})
-        console.log({ response })
-        this.dialog = false
-        this.$store.dispatch('getPostres')
-        this.resetForm()
+        if(this.producto.categoria === 'tortas'){
+          const response = await this.$store.dispatch('crearTorta', {...this.producto})
+          console.log({ response })
+          this.dialog = false
+          this.$store.dispatch('getTortas')
+          this.resetForm()    
+        } else if(this.producto.categoria === 'postres'){
+          const response = await this.$store.dispatch('crearPostre', {...this.producto})
+          console.log({ response })
+          this.dialog = false
+          this.$store.dispatch('getPostres')
+          this.resetForm()    
+        } else {
+          const response = await this.$store.dispatch('crearGalleta', {...this.producto})
+          console.log({ response })
+          this.dialog = false
+          this.$store.dispatch('getGalletas')
+          this.resetForm() 
+        }   
       } catch (e) {
         console.error(e)
       }
