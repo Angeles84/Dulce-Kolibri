@@ -50,17 +50,15 @@
         </v-col> 
       </v-row>
     </v-container>
-    <Footer />
   </div>
 </template>
 
 <script >
-import Footer from '../components/Footer'
 import Store from '@/store'
 
 export default {
   name: 'Productos',
-  components: { Footer },
+  components: {  },
   data: () => ({
     
   }),
@@ -78,11 +76,9 @@ export default {
     },
     irAlDetallePostres( i, postre){
       this.$router.push(`/detalle/postres/${postre.id}`)
-      console.log('// Item ///', i);
     },
     irAlDetalleGalletas( i, galleta){
       this.$router.push(`/detalle/galletas/${galleta.id}`)
-      console.log('// Item ///', i);
     }
   }
 }

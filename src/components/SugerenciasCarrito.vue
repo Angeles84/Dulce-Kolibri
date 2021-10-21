@@ -15,7 +15,7 @@
         </div>
         <div class="pt-5">
           <v-btn
-            class="px-4"
+            class="testing px-4"
             rounded
             small
             outlined
@@ -33,11 +33,9 @@
 
 <script>
 
-
 export default {
   methods: {
     agregarAlCarrito( item, index){
-      console.log('// Item ///', index);
       this.$store.dispatch('agregarAlCarrito', {item, index})
     },
   }

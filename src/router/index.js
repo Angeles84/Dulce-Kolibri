@@ -1,12 +1,20 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Firebase from 'firebase'
+import Swal from 'sweetalert2'
+import Store from '@/store/index.js'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
+    name: 'Inicio',
+    component: Home
+  },
+  {
+    path: '/inicio',
     name: 'Inicio',
     component: Home
   },
@@ -43,7 +51,10 @@ const routes = [
   {
     path: '/carrito',
     name: 'Carrito',
-    component: () => import('../views/Carrito.vue')
+    component: () => import('../views/Carrito.vue'),
+    meta: {
+      login: true
+    }
   },
   {
     path: '/login',
@@ -51,9 +62,18 @@ const routes = [
     component: () => import('../views/Login.vue')
   },
   {
-    path: '/actualizar',
-    name: 'ActualizarDatos',
-    component: () => import('../views/ActualizarDatos.vue')
+    path: '/administracion',
+    name: 'Administracion',
+    component: () => import('../views/Administracion.vue'),
+    //meta: {
+    //  admin: true,
+    //  login: true
+    //}
+  },
+  {
+    path: '/editar/:categoria/:id',
+    name: 'Editar',
+    component: () => import('../views/Editar.vue')
   },
   {
     path: '/detalle/:category/:id',
@@ -71,17 +91,23 @@ const router = new VueRouter({
 
 })
 
-
-// router.beforeEach((to, from, next) => {
-//   let user = Firebase.auth().currentUser;
-//   let authRequired = to.matched.some(route => route.meta.login);
-//   if (!user && authRequired) {
-//     next('login');
-//   } else if (user && !authRequired) {
-//     next('home');
-//   }else {
-//     next();
-//   }
-// });
+router.beforeEach((to, from, next) => {
+  let user = Firebase.auth().currentUser;
+  let authRequired = to.matched.some(route => route.meta.login);
+  if (!user && authRequired) {
+    next('/inicio')
+    Swal.fire({
+      icon: 'error',
+      title: 'Debes ingresar para poder ir al carrito',
+      width: 600
+    })
+  } else if (user && !authRequired) {
+    next(); 
+  } else if(to.meta.admin && !Store.getters['esAdmin'] ){
+    next('/inicio')
+  }else {
+    next();
+  }
+});
 
 export default router

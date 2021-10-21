@@ -55,7 +55,7 @@
               ><b>{{ producto.qty }}</b></span
             >
             <button
-              class="btn-mas"
+              class="testing btn-mas"
               @click="$store.dispatch('agregarCantidadAlProductoDelCarritoDeCompras', id)"
             >
               +
@@ -72,7 +72,7 @@
                 })}`
               "
             ></h4>
-            <v-btn small plain class="mt-5" @click="eliminarProducto(id)">
+            <v-btn small plain class="mt-5 testing" @click="eliminarProducto(id)">
               <v-icon color="#c59206">mdi-delete</v-icon>
             </v-btn>
           </div>
@@ -99,10 +99,10 @@
               <p v-text="producto.personas"></p>
             </div>
             <div>
-              <h4 class="pt-7 font-weight-bold">
+              <h4 class="pt-4 mb-3 font-weight-bold">
                 $
                 {{
-                  producto.precio.toLocaleString('de-DE', {
+                  (producto.precio * producto.qty).toLocaleString('de-DE', {
                     minimumFractionDigits: 0
                   })
                 }}
@@ -130,7 +130,7 @@
               </div>
             </div>
           </div>
-          <hr />
+          <hr  class="mb-1">
         </v-col>
       </v-row>
     </v-container>
@@ -173,11 +173,9 @@
         <!--Col sugerencias-->
       </v-row>
     </v-container>
-    <Footer />
   </div>
 </template>
 <script>
-import Footer from '../components/Footer'
 import SugCarrito from '../components/SugerenciasCarrito'
 import CryptoJS from 'crypto-js'
 import axios from 'axios'
@@ -186,7 +184,7 @@ import querystring from 'query-string'
 
 export default {
   name: 'Carrito',
-  components: { Footer, SugCarrito },
+  components: { SugCarrito },
   data: () => ({
     signature: ''
   }),
@@ -212,14 +210,14 @@ export default {
       // return valorTotal;
     },
     crearSignature(form) {
-      const secretKey = '1b48ec1ca7efa74509196577aa3c4ecb0f7fdf11'
-      let signature = '';
-      Object.keys(form).forEach((key) => {
+      const secretKey = process.env.VUE_APP_FLOW_SECRET_KEY
+      let signature = ''
+      Object.keys(form).forEach(key => {
         signature += `${key}${form[key]}`
       })
-      console.log(signature);
-      let hash = CryptoJS.HmacSHA256(signature, secretKey);
-      console.log('hash',hash.toString());
+      console.log(signature)
+      let hash = CryptoJS.HmacSHA256(signature, secretKey)
+      console.log('hash', hash.toString())
       return hash.toString()
     },
     crearOrden(form) {
@@ -236,19 +234,17 @@ export default {
           console.log(error)
         })
     },
-    cobrar() {
-      const order = Math.round(Math.random()*100)
-      const urlConfirmation = 'http://flowosccomerce.tuxpan.com/csepulveda/api2/pay/confirmPay.php' 
-      const urlReturn = 'http://flowosccomerce.tuxpan.com/csepulveda/api2/pay/resultPay.php'
+     cobrar() {
+      const order = Math.round(Math.random() * 100)
       const form = {
         amount: this.montoApago(),
-        apiKey: "53305F1C-A536-4332-9718-7C31DCEL94C8",
+        apiKey: process.env.VUE_APP_FLOW_API_KEY,
         commerceOrder: order,
-        email: "vriquelmefe@gmail.com",
+        email: 'vriquelmefe@gmail.com',
         subject: `Compra orden numero: ${order}`,
-        urlConfirmation: urlConfirmation,
-        urlReturn: urlReturn,
-      };
+        urlConfirmation: process.env.VUE_APP_FLOW_URL_CONFIRMATION,
+        urlReturn: process.env.VUE_APP_FLOW_URL_RETURN
+      }
       form.s = this.crearSignature(form)
       this.crearOrden(form)
     }

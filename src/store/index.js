@@ -2,13 +2,13 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Firebase from 'firebase'
 import 'firebase/firestore'
-import Swl from 'sweetalert2'
+import Swal from 'sweetalert2'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    snackbar: false,
+    user: null,
     drawer: false,
     productos: [],
     detalles: [],
@@ -17,6 +17,14 @@ export default new Vuex.Store({
       email: '',
       password: ''
     },
+    producto: {
+      nombre: '',
+      imagen: '',
+      personas: '',
+      descripcion: '',
+      descuento: '',
+      precio: 0
+    },
     links: ['Inicio', 'Nosotros', 'Productos', 'Contacto'],
     data: [],
     tortas: [],
@@ -24,13 +32,32 @@ export default new Vuex.Store({
     galletas: [],
     sugerencias: [],
     destacados: [],
-    producto: {
+  
+    torta: {
       nombre: '',
       imagen: '',
       personas: '',
       descripcion: '',
+      descuento: '',
       precio: 0
-    }
+    },
+    postre: {
+      nombre: '',
+      imagen: '',
+      personas: '',
+      descripcion: '',
+      descuento: '',
+      precio: 0
+    },
+    galleta: {
+      nombre: '',
+      imagen: '',
+      personas: '',
+      descripcion: '',
+      descuento: '',
+      precio: 0
+    },
+    roles: []
   },
   getters: {
     valorTotalVenta(state) {
@@ -43,10 +70,15 @@ export default new Vuex.Store({
         return accumulator + producto.precio * producto.qty
       }, 0)
     },
-    sumaSubTotal(state, index) {
-      return state.productos.reduce((accumulator, producto) => {
-        return accumulator + Number.parseInt(producto.precio[index]) * producto.qty
-      }, 0)
+    productos(state ){
+      return [
+        ...state.tortas.map(torta => ({...torta, categoria: 'tortas'})),
+        ...state.postres.map(postre => ({...postre, categoria: 'postres'})),
+        ...state.galletas.map(galleta => ({...galleta, categoria: 'galletas'}))
+      ]
+    },
+    esAdmin(state){
+      return state.roles.some(rol => rol.correo === state.user.email)
     }
   },
   mutations: {
@@ -84,33 +116,59 @@ export default new Vuex.Store({
     },
     SUB_QTY_TO_SHOPPINGCART_ITEM(state, productIndex) {
       state.productos[productIndex].qty--
+    },
+    SET_USER(state, newUser) {
+      state.user = newUser
+    },
+    //Para editar tortas
+    UNSET_TORTA(state) {
+      state.torta = null
+    },
+    SET_TORTA(state, newTorta) {
+      state.torta = newTorta
+    },
+    //Para editar postres
+    UNSET_POSTRE(state) {
+      state.postre = null
+    },
+    SET_POSTRE(state, newTorta) {
+      state.postre = newTorta
+    },
+    //Para editar galletas
+    UNSET_GALLETA(state) {
+      state.galleta = null
+    },
+    SET_GALLETA(state, newTorta) {
+      state.galleta = newTorta
+    },
+    UNSET_PRODUCTO(state) {
+      state.producto = null
+    },
+    SET_PRODUCTO(state, newTorta) {
+      state.producto = newTorta
+    },
+    SET_ROLES(state, newRoles) {
+      state.roles = newRoles
     }
   },
   actions: {
     agregarAlCarrito({ state, commit }, { index }) {
-      // const productoEncarritoDecompras = state.productos.findIndex(
-      //   (productoCarrito) =>{
-      //   return productoCarrito.index === productos.index
-      //   }
-      // )
       commit('ADD_PRODUCTO_AL_CARRITO', { ...index, qty: 1 })
-      Swl.fire({title: `${ index.nombre} - Producto agregado con exito!`,
-      imageUrl: `${ index.imagen}`,
-      imageWidth: 200,
-      imageHeight: 100,
-      imageAlt: 'Custom image',
-})
-      // alert(`${index.nombre} - Producto agregado con exito!`);
-      // console.log("este es", [state.productos]);
+      Swal.fire({
+        title: `${ index.nombre}`,
+        text: '¡Producto agregado con exito!',
+        imageUrl: `${ index.imagen}`,
+        imageWidth: 150,
+        imageHeight: 100,
+        imageAlt: 'Custom image',
+      })
     },
-
     agregarDetalle({ state, commit }, { i }) {
       commit('ADD_PRODUCTO_AL_DETALLE', i)
       console.log('productoPasadooo', [{ i }])
       alert(`${i.nombre} - Producto agregado con exito!`)
       console.log('detalle', [state.detalles])
     },
-
     getTortas(context) {
       Firebase.firestore()
         .collection('tortas')
@@ -161,13 +219,151 @@ export default new Vuex.Store({
           context.commit('GET_DESTACADOS', data)
         })
     },
+    getUser(context, accept) {
+      console.log(accept)
+      console.log(accept.email)
+      context.commit('SET_USER', accept)    
+    },
+
     agregarCantidadAlProductoDelCarritoDeCompras(context, indexProduct) {
       console.log(indexProduct)
       context.commit('ADD_QTY_TO_SHOPPINGCART_ITEM', indexProduct)
     },
-
     restarCantidadAlProductoDelCarritoDeCompras(context, indexProduct) {
       context.commit('SUB_QTY_TO_SHOPPINGCART_ITEM', indexProduct)
+    },
+
+    //Para editar tortas
+    getTorta(context, id) {
+      context.commit('UNSET_PRODUCTO')
+      return new Promise((resolve, reject) => {
+        Firebase.firestore()
+          .collection('tortas')
+          .doc(id)
+          .get()
+          .then((doc) => {
+            context.commit('SET_PRODUCTO', { id: doc.id, ...doc.data() })
+            resolve()
+          }, reject)
+      })
+    },
+    borrarTorta(context,torta) {
+      Firebase.firestore()
+        .collection('tortas')
+        .doc(torta.id)
+        .delete()
+        .then(() => {
+          context.dispatch('getTortas')
+        })
+    },
+    crearTorta(context, nuevaTorta) {
+      return new Promise((resolve, reject) => {
+        Firebase.firestore().collection('tortas').add(nuevaTorta).then(resolve, reject)
+      })
+    },
+    actualizarTorta(context, torta) {
+      return new Promise((resolve, reject) => {
+        Firebase.firestore()
+          .collection('tortas')
+          .doc(torta.id)
+          .update(torta)
+          .then(() => {
+            context.dispatch('getTortas')
+            resolve()
+          }, reject)
+      })
+    },
+
+    //Para editar galletas
+    getGalleta(context, id) {
+      context.commit('UNSET_PRODUCTO')
+      return new Promise((resolve, reject) => {
+        Firebase.firestore()
+          .collection('galletas')
+          .doc(id)
+          .get()
+          .then((doc) => {
+            context.commit('SET_PRODUCTO', { id: doc.id, ...doc.data() })
+            resolve()
+          }, reject)
+      })
+    },
+    borrarGalleta(context,torta) {
+      Firebase.firestore()
+        .collection('galletas')
+        .doc(torta.id)
+        .delete()
+        .then(() => {
+          context.dispatch('getGalletas')
+        })
+    },
+    crearGalleta(context, nuevaTorta) {
+      return new Promise((resolve, reject) => {
+        Firebase.firestore().collection('galletas').add(nuevaTorta).then(resolve, reject)
+      })
+    },
+    actualizarGalleta(context, galleta) {
+      return new Promise((resolve, reject) => {
+        Firebase.firestore()
+          .collection('galletas')
+          .doc(galleta.id)
+          .update(galleta)
+          .then(() => {
+            context.dispatch('getGalletas')
+            resolve()
+          }, reject)
+      })
+    },
+
+    //Para editar postres
+    getPostre(context, id) {
+      context.commit('UNSET_PRODUCTO')
+      return new Promise((resolve, reject) => {
+        Firebase.firestore()
+          .collection('postres')
+          .doc(id)
+          .get()
+          .then((doc) => {
+            context.commit('SET_PRODUCTO', { id: doc.id, ...doc.data() })
+            resolve()
+          }, reject)
+      })
+    },
+    borrarPostre(context,torta) {
+      Firebase.firestore()
+        .collection('postres')
+        .doc(torta.id)
+        .delete()
+        .then(() => {
+          context.dispatch('getPostres')
+        })
+    },
+    crearPostre(context, nuevaTorta) {
+      return new Promise((resolve, reject) => {
+        Firebase.firestore().collection('postres').add(nuevaTorta).then(resolve, reject)
+      })
+    },
+    actualizarPostre(context, postre) {
+      return new Promise((resolve, reject) => {
+        Firebase.firestore()
+          .collection('postres')
+          .doc(postre.id)
+          .update(postre)
+          .then(() => {
+            context.dispatch('getPostres')
+            resolve()
+          }, reject)
+      })
+    },
+    getRoles(context) {
+      Firebase.firestore()
+      .collection('roles')
+      .get() 
+      .then(documents => {
+        let data = []
+        documents.forEach(doc => data.push({ id: doc.id, ...doc.data() }))
+        context.commit('SET_ROLES', data)
+      })
     }
   },
   modules: {}

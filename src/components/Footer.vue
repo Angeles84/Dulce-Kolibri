@@ -6,7 +6,7 @@
             <img src="@/assets/logo_kolibri.png" class="logo-kolibri-1 pl-sm-10 pl-lg-0">
             <ul class="list-none pr-md-5" id="enlaces">
                 <li class="text-bold">Enlances</li>
-                <li><router-link :to="{name: 'Nosotros'}">Nosotros</router-link></li>
+                <li class="testing"><router-link :to="{name: 'Nosotros'}">Nosotros</router-link></li>
                 <li><router-link :to="{name: 'Tortas'}">Tortas</router-link></li>
                 <li><router-link :to="{name: 'Postres'}">Postres</router-link></li>
             </ul>
