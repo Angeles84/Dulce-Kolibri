@@ -105,6 +105,7 @@
 <script>
 import { mapState} from 'vuex';
 import Store from '@/store'
+import Swal from 'sweetalert2'
 
 export default {
   name: "Registro",
@@ -136,6 +137,10 @@ export default {
         } else {
           await this.$store.dispatch('actualizarGalleta', {...this.producto})
         }
+        Swal.fire({
+          icon: 'success',
+          title: '¡Producto editado con éxito!',
+        }) 
         this.$router.back()
       } catch (e) {
         console.error(e)

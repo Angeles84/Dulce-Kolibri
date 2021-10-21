@@ -160,7 +160,7 @@ export default {
             this.$store.dispatch('getUser', accept.user)
             this.btnCerrar = true;
             this.dialog = false;
-            console.log('Login con Google')
+            console.log('El correo es ' + this.$store.state.user.email)
             console.log(this.$store.state.user.displayName);
             this.$router.push('/login');
           },

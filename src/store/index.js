@@ -70,12 +70,7 @@ export default new Vuex.Store({
         return accumulator + producto.precio * producto.qty
       }, 0)
     },
-    sumaSubTotal(state, index) {
-      return state.productos.reduce((accumulator, producto) => {
-        return accumulator + Number.parseInt(producto.precio[index]) * producto.qty
-      }, 0)
-    },
-    productos(state){
+    productos(state ){
       return [
         ...state.tortas.map(torta => ({...torta, categoria: 'tortas'})),
         ...state.postres.map(postre => ({...postre, categoria: 'postres'})),
@@ -226,9 +221,10 @@ export default new Vuex.Store({
     },
     getUser(context, accept) {
       console.log(accept)
-      context.commit('SET_USER', accept)
-      
+      console.log(accept.email)
+      context.commit('SET_USER', accept)    
     },
+
     agregarCantidadAlProductoDelCarritoDeCompras(context, indexProduct) {
       console.log(indexProduct)
       context.commit('ADD_QTY_TO_SHOPPINGCART_ITEM', indexProduct)

@@ -206,6 +206,7 @@
         mdi-delete
       </v-icon>
     </template>
+
     <template v-slot:no-data>
       <v-btn
         color="primary"
@@ -214,8 +215,9 @@
         Reset
       </v-btn>
     </template>
+ 
   </v-data-table>
-
+  
   </v-container>
   </div>
 </template>
@@ -223,6 +225,7 @@
 <script>
 import Firebase from 'firebase';
 import { mapState, mapGetters, mapMutations, createLogger } from 'vuex';
+import Swal from 'sweetalert2'
 
 export default {
   name: 'TablaTortas',
@@ -230,6 +233,7 @@ export default {
   data: () => ({
     dialog: false,
     dialogDelete: false,
+    dialogBorrar: false,
     headers: [
       {
         text: 'Nombre',
@@ -266,7 +270,7 @@ export default {
     },
     //eliminar curso
     borrarItem(item) { 
-      prompt('Desea borrar esta torta?')
+      prompt('Desea borrar este producto?')
       if(item.categoria === 'tortas') {
         this.$store.dispatch('borrarTorta', item)
       } else if(item.categoria === 'postres') {
@@ -274,7 +278,10 @@ export default {
       }else {
         this.$store.dispatch('borrarGalleta', item)
       }
-      
+      Swal.fire({
+          icon: 'success',
+          title: '¡Producto eliminado con éxito!',
+        }) 
     },
     close () {
       this.dialog = false
@@ -285,7 +292,6 @@ export default {
     },
 
     async addTorta() {
-      console.log('hola mundo')
       try {
         if(this.producto.categoria === 'tortas'){
           const response = await this.$store.dispatch('crearTorta', {...this.producto})
@@ -305,7 +311,11 @@ export default {
           this.dialog = false
           this.$store.dispatch('getGalletas')
           this.resetForm() 
-        }   
+        } 
+        Swal.fire({
+          icon: 'success',
+          title: '¡Producto agregado con éxito!',
+        })  
       } catch (e) {
         console.error(e)
       }

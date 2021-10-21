@@ -65,10 +65,10 @@ const routes = [
     path: '/administracion',
     name: 'Administracion',
     component: () => import('../views/Administracion.vue'),
-    meta: {
-      admin: true,
-      login: true
-    }
+    //meta: {
+    //  admin: true,
+    //  login: true
+    //}
   },
   {
     path: '/editar/:categoria/:id',
@@ -102,8 +102,7 @@ router.beforeEach((to, from, next) => {
       width: 600
     })
   } else if (user && !authRequired) {
-    next();
-    
+    next(); 
   } else if(to.meta.admin && !Store.getters['esAdmin'] ){
     next('/inicio')
   }else {
