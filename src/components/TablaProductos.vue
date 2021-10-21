@@ -7,7 +7,7 @@
     :items="$store.getters['productos']"
     class="elevation-1"
   >
-    <template v-slot:top>
+    <template v-slot:top >
       <v-toolbar
         flat
       >
@@ -171,11 +171,9 @@
                   LIMPIAR VALIDACIóN
                 </v-btn>     
               </div>
-
             </v-card-actions>
           </v-card>
         </v-dialog>
-
       </v-toolbar>
     </template>
     
@@ -199,9 +197,9 @@
       </v-icon>
       <v-icon
         color="#4f3701"
-        class="pl-5"
+        class="ml-5"
         small
-        @click="borrarItem(item)"
+        @click.stop="borrarItem(item)"
       >
         mdi-delete
       </v-icon>
@@ -209,15 +207,13 @@
 
     <template v-slot:no-data>
       <v-btn
-        color="primary"
-     
+        color="primary"  
       >
         Reset
       </v-btn>
     </template>
- 
   </v-data-table>
-  
+
   </v-container>
   </div>
 </template>
@@ -231,6 +227,7 @@ export default {
   name: 'TablaTortas',
 
   data: () => ({
+    itemss: 'i',
     dialog: false,
     dialogDelete: false,
     dialogBorrar: false,
@@ -251,14 +248,7 @@ export default {
   computed: {
     ...mapGetters([ 'productos']),
   }, 
-  watch: {
-    dialog (val) {
-      val || this.close()
-    },
-    dialogDelete (val) {
-      val || this.closeDelete()
-    },
-  },
+ 
   mounted() {
     this.cargaTabla();
   },
@@ -270,25 +260,32 @@ export default {
     },
     //eliminar curso
     borrarItem(item) { 
-      prompt('Desea borrar este producto?')
-      if(item.categoria === 'tortas') {
-        this.$store.dispatch('borrarTorta', item)
-      } else if(item.categoria === 'postres') {
-        this.$store.dispatch('borrarPostre', item)
-      }else {
-        this.$store.dispatch('borrarGalleta', item)
-      }
+      //prompt('Desea borrar este producto?')
       Swal.fire({
-          icon: 'success',
-          title: '¡Producto eliminado con éxito!',
-        }) 
-    },
-    close () {
-      this.dialog = false
-      this.$nextTick(() => {
-        this.editedItem = Object.assign({}, this.defaultItem)
-        this.editedIndex = -1
-      })
+        icon: 'question',
+        title: '¿Desea borrar este producto?',
+        text: 'Si haces click en "Eliminar" borrarás el producto',
+        showCancelButton: true,
+        confirmButtonText: 'Eliminar',
+        cancelButtonText: `Cancelar`,
+
+      }).then((result) => {
+        if (result.isConfirmed) {
+          if(item.categoria === 'tortas') {
+            this.$store.dispatch('borrarTorta', item)
+          } else if(item.categoria === 'postres') {
+              this.$store.dispatch('borrarPostre', item)
+          }else {
+            this.$store.dispatch('borrarGalleta', item)
+          }
+          Swal.fire({
+            icon: 'success',
+            title: '¡Producto eliminado con éxito!',
+          }) 
+        } else if (result.isDenied) {
+           Swal.fire('Changes are not saved', '', 'info')
+        }
+      })    
     },
 
     async addTorta() {
@@ -328,7 +325,6 @@ export default {
       this.$refs.form.resetValidation()
     },
   }
-
 }
 </script>
 
