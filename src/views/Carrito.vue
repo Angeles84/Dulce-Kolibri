@@ -200,14 +200,6 @@ export default {
     },
     montoApago() {
       return this.$store.getters['sumaTotalProductos']
-      // let valorTotal = 0;
-      // this.$store.state.productos.forEach((producto) => {
-      //   console.log(typeof producto.id);
-      //   console.log('#####',producto.precio);
-      //   valorTotal += this.items[producto.id].precio;
-      // });
-      // console.log('valorTotal',  valorTotal);
-      // return valorTotal;
     },
     crearSignature(form) {
       const secretKey = process.env.VUE_APP_FLOW_SECRET_KEY
@@ -228,6 +220,7 @@ export default {
           setTimeout(() => {
             window.open(resp.data.url)
           }, 1000)
+          this.$router.push('/')
           //redireccionar a form.data.url
         })
         .catch(error => {
