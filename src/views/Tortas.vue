@@ -8,6 +8,7 @@
         <v-col cols="12" md="6" lg="4" class="text-center"
           v-for="(torta, i) in $store.state.tortas"
           :key="i"
+          data-cy="producto"
         >
           <img :src="torta.imagen" alt="" class="img-fluid img-producto" @click="irAlDetalle(i, torta)">
           <h3 class="mt-4 mb-0">{{torta.nombre}}</h3>

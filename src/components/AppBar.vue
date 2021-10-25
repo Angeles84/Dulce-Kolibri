@@ -10,7 +10,7 @@
       <img src="@/assets/logo-menu.png" alt="">
     </router-link>
       <v-spacer></v-spacer>
-      <v-toolbar-items v-if="$vuetify.breakpoint.mdAndUp" class="shrink">
+      <v-toolbar-items v-if="$vuetify.breakpoint.mdAndUp" class="shrink" data-cy="links">
         <v-btn exact color="#4F3701" plain :to="{name: 'Inicio'}"
         >
           Inicio

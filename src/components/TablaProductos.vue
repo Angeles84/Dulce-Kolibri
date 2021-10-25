@@ -26,6 +26,7 @@
               class="mb-2 agregar"
               v-bind="attrs"
               v-on="on"
+              data-cy="agregarCarrito"
             >
               AGREGAR PRODUCTO
             </v-btn>
@@ -37,7 +38,7 @@
 
             <v-card-text>
               <v-container>
-               <v-form ref="form" :model="producto">
+               <v-form ref="form" :model="producto" data-test-id="agregar-producto">
                 <v-row>
                   <v-col
                     cols="12" 
@@ -147,6 +148,7 @@
                   dark
                   class="mr-4 mb-3"
                   @click="addTorta"
+                  id="agregar"
                 >
                  AGREGAR
                 </v-btn>
