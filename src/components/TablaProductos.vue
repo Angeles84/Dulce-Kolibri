@@ -267,6 +267,7 @@ export default {
         text: 'Si haces click en "Eliminar" borrarás el producto',
         showCancelButton: true,
         confirmButtonText: 'Eliminar',
+        confirmButtonColor: '#DD3333',
         cancelButtonText: `Cancelar`,
 
       }).then((result) => {
