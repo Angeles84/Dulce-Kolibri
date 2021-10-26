@@ -145,7 +145,7 @@
                   color="#D9AF3A"
                   rounded
                   dark
-                  class="mr-4 mb-3"
+                  class="mr-4 mb-3 testing"
                   @click="addTorta"
                 >
                  AGREGAR
