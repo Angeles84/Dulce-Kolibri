@@ -29,6 +29,7 @@ export default {
   components: { Sugerencias },
   data: () => ({
     vertical: true,
+  
   }),
 
   async beforeRouteEnter(to, from, next) {

@@ -149,6 +149,9 @@ export default new Vuex.Store({
     },
     SET_ROLES(state, newRoles) {
       state.roles = newRoles
+    },
+    SET_PRODUCTOS(state) {
+      state.productos = []
     }
   },
   actions: {
@@ -223,6 +226,10 @@ export default new Vuex.Store({
       console.log(accept)
       console.log(accept.email)
       context.commit('SET_USER', accept)    
+    },
+
+    vaciarCarrito(context){
+      context.commit('SET_PRODUCTOS')
     },
 
     agregarCantidadAlProductoDelCarritoDeCompras(context, indexProduct) {

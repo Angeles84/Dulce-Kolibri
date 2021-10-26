@@ -220,6 +220,7 @@ export default {
           setTimeout(() => {
             window.open(resp.data.url)
           }, 1000)
+          this.$store.dispatch('vaciarCarrito');
           this.$router.push('/')
           //redireccionar a form.data.url
         })

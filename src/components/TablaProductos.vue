@@ -242,7 +242,7 @@ export default {
       },
       { text: 'Cantidad', value: 'personas' },
       { text: 'Precio', value: 'precio' },
-      { text: 'Descuento', value: 'descuento' },
+      { text: 'Precio anterior', value: 'descuento' },
       { text: 'Acciones', value: 'actions', sortable: false },
     ],
     producto: {}
