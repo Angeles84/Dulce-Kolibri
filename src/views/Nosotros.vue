@@ -3,7 +3,7 @@
     <v-container>
       <v-row class="px-4 px-md-0 mb-14">
         <v-col cols="12" md="7" lg="7" class="pr-md-9">
-          <h2 class="mb-5">Nuestra historia</h2>
+          <h2 class="mb-5" data-cy="titulo">Nuestra historia</h2>
           <p>Hace un tiempo la mujer más hermosa que la vida me pudo dar emprendió su vuelo y con ello todos mis sueños se fueron abajo... No puedo negar que han sido meses muy difíciles, ella sería mi compañera y con su ausencia solo pensé en dejar todo, pero el tiempo me ha enseñado que es el peor error que puedo cometer, porque no sólo era mi sueño, también era el de mi madre, quien siempre fue mi admiradora número uno.</p>
           <p>En su casa ella era acompañada por este bella y pequeña ave, quien no la dejó sola hasta el último de sus días, la visitaba en su ventana y alegraba días donde el dolor y la pena eran algo habitual y es este pequeño ser quien se acercó a mí cuando la tristeza era tan grande que me sentía incapaz de seguir sonriendo. En mi corazón sentía que era ella quien venía a calmar tantos momentos de angustia.</p>
           <p>Es por esto que nuestro nombre ha cambiado de "@delicias_con_amour" a Dulce Kolibri, porque será mi forma de honrar la memoria de mi compañera, de mi amiga, la mujer que con cariño y amor me enseñó y me dio tanto en esta vida. Se que ella me sigue acompañando, y que este emprendimiento tendrá todas la buenas vibras, porque ahora no estoy sola, el ángel más bello esta junto a mi.</p>
