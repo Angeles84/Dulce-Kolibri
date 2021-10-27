@@ -1,4 +1,7 @@
 # dulce-kolibri
+Visitar el sitio aquí https://dulce-kolibri.web.app/ 
+
+(el pago aún no está habilitado, pero se puede comprar por Instagram)
 
 ## Project setup
 ```
