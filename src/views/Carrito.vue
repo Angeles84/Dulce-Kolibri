@@ -181,6 +181,8 @@ import CryptoJS from 'crypto-js'
 import axios from 'axios'
 import Store from '@/store'
 import querystring from 'query-string'
+import Swal from 'sweetalert2'
+
 
 export default {
   name: 'Carrito',
@@ -241,6 +243,11 @@ export default {
       }
       form.s = this.crearSignature(form)
       this.crearOrden(form)
+      Swal.fire({
+          icon: 'success',
+          title: '¡Abriendo pago en una nueva pestaña!',
+        }) 
+
     }
   }
 }
