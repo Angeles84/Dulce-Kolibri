@@ -1,8 +1,7 @@
 # dulce-kolibri
 Visitar el sitio aquí https://dulce-kolibri.web.app/ 
 
-(el pago aún no está habilitado, pero se puede comprar por Instagram)
-
+(el pago aún no está habilitado, pero se puede comprar por Instagram en @dulce-kolibri)
 
 Tecnologías utilizadas: Vue, Vuex, Router, Vuetify, Bootstrap, Firebase, Sweetaler2, Moment
 
